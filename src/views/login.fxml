@@ -14,7 +14,6 @@
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="controllers.LoginController">
 
-    <!-- Top Header -->
     <top>
         <BorderPane prefHeight="100" style="-fx-background-color: #3B82F6;">
             <center>
@@ -27,7 +26,6 @@
         </BorderPane>
     </top>
 
-    <!-- Center Login Form -->
     <center>
         <StackPane>
             <VBox spacing="15"
@@ -42,23 +40,19 @@
                          -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.25), 15, 0, 0, 4);">
 
                 <children>
-                    <!-- Form Title -->
                     <Label text="Login"
                            style="-fx-font-size: 22; -fx-font-weight: bold; -fx-text-fill: #333;" />
 
-                    <!-- Username Field -->
                     <TextField fx:id="usernameField"
                                prefHeight="40"
                                maxWidth="300"
                                promptText="Username" />
 
-                    <!-- Password Field -->
                     <PasswordField fx:id="passwordField"
                                    prefHeight="40"
                                    maxWidth="300"
                                    promptText="Password" />
 
-                    <!-- Login Button -->
                     <Button fx:id="loginButton"
                             onAction="#handleLogin"
                             prefHeight="40"
@@ -66,7 +60,6 @@
                             text="Login"
                             style="-fx-background-color: #3B82F6; -fx-text-fill: white; -fx-font-size: 16;" />
 
-                    <!-- Forgot Password -->
                     <Label text="Forgot Password?"
                            style="-fx-text-fill: #3B82F6; -fx-underline: true;" />
                 </children>
