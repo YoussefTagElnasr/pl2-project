@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="520.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.RegisterController">
+<AnchorPane prefHeight="520.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LoginController">
 
     <!-- Header -->
     <AnchorPane prefHeight="100.0" prefWidth="650.0" style="-fx-background-color: #3B82F6;">
@@ -28,7 +28,7 @@
             <TextField fx:id="usernameField" prefHeight="40.0" prefWidth="250.0" promptText="Username" />
             <PasswordField fx:id="passwordField" prefHeight="40.0" prefWidth="250.0" promptText="Password" />
 
-            <Button fx:id="loginButton" onAction="#GreetUser" prefHeight="40.0" prefWidth="250.0" style="-fx-background-color: #3B82F6; -fx-text-fill: white; -fx-font-size: 16px;" text="Login" />
+            <Button fx:id="loginButton" onAction="#handleLogin" prefHeight="40.0" prefWidth="250.0" style="-fx-background-color: #3B82F6; -fx-text-fill: white; -fx-font-size: 16px;" text="Login" />
 
             <Label style="-fx-text-fill: #3B82F6; -fx-underline: true;" text="Forgot Password?" />
         </children>
