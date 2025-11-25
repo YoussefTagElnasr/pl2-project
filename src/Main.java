@@ -1,19 +1,20 @@
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 public class Main extends Application {
+
     @Override
-    public void start(Stage stage) {
-        Label label = new Label("Hello JavaFX!");
-        Scene scene = new Scene(label, 300, 100);
+    public void start(Stage stage) throws Exception {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/login.fxml"));
+        Scene scene = new Scene(loader.load());
         stage.setScene(scene);
-        stage.setTitle("JavaFX Test");
+        stage.setTitle("Login App");
         stage.show();
     }
 
     public static void main(String[] args) {
-        launch(args);
+        launch();
     }
 }
