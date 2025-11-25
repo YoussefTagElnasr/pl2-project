@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import services.AuthServices;
+import models.CurrentUser;
 
 public class LoginController {
 
@@ -18,11 +19,12 @@ public class LoginController {
 
     @FXML
     private void handleLogin() {
-        String email = usernameField.getText();
+        String username = usernameField.getText();
         String password = passwordField.getText();
+        String role = AuthServices.getUserRole(username, password);
 
-        String role = AuthServices.getUserRole(email, password);
+        CurrentUser user = new CurrentUser(username, role);
 
-        System.out.println(role);
+        System.out.println(user.getUsername());
     }
 }
