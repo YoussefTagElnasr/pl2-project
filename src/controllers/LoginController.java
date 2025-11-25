@@ -1,13 +1,13 @@
 package controllers;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import services.AuthServices;
 import models.CurrentUser;
 
 public class LoginController {
-
     @FXML
     private Button loginButton;
 
@@ -21,10 +21,18 @@ public class LoginController {
     private void handleLogin() {
         String username = usernameField.getText();
         String password = passwordField.getText();
+
         String role = AuthServices.getUserRole(username, password);
 
-        CurrentUser user = new CurrentUser(username, role);
-
-        System.out.println(user.getUsername());
+        if (role != null) {
+            CurrentUser.setInstance(username, role);
+            //TODO right here we need to switch the scene fo the role
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Login Failed");
+            alert.setHeaderText(null);
+            alert.setContentText("The username or password may not be correct!");
+            alert.showAndWait();
+        }
     }
 }
