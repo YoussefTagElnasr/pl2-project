@@ -26,7 +26,7 @@ public class LoginController {
 
         if (role != null) {
             CurrentUser.setInstance(username, role);
-            //TODO right here we need to switch the scene fo the role
+            //TODO right here we need to switch the scene for diffrent roles
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Login Failed");
