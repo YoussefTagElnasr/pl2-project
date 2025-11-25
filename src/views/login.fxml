@@ -5,36 +5,60 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.layout.StackPane?>
 
-<AnchorPane prefHeight="520.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LoginController">
+<BorderPane xmlns="http://javafx.com/javafx/25"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="controllers.LoginController">
+    <top>
+        <BorderPane prefHeight="100" style="-fx-background-color: #3B82F6;">
+            <center>
+                <Label text="LOGIN" style="-fx-text-fill: white;">
+                    <font>
+                        <Font name="Arial Bold" size="30" />
+                    </font>
+                </Label>
+            </center>
+        </BorderPane>
+    </top>
+    <center>
+        <StackPane>
+            <VBox spacing="15"
+                alignment="CENTER"
+                prefWidth="520"
+                maxWidth="520"
+                prefHeight="400"
+                maxHeight="400"
+                style="-fx-background-color: #f2f2f2; 
+                        -fx-background-radius: 15; 
+                        -fx-padding: 30;
+                        -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.25), 15, 0, 0, 4);">
 
-    <!-- Header -->
-    <AnchorPane prefHeight="100.0" prefWidth="650.0" style="-fx-background-color: #3B82F6;">
-        <children>
-            <Label layoutX="278.0" layoutY="32.0" style="-fx-text-fill: white;" text="LOGIN">
-                <font>
-                    <Font name="Arial Bold" size="30.0" />
-                </font>
-            </Label>
-        </children>
-    </AnchorPane>
+                <children>
+                    <TextField fx:id="usernameField"
+                            prefHeight="40"
+                            maxWidth="300"
+                            promptText="Username" />
 
-    <!-- Login Form -->
-    <VBox layoutX="180.0" layoutY="149.0" spacing="15.0">
-        <children>
-            <TextField fx:id="usernameField" prefHeight="40.0" prefWidth="250.0" promptText="Username" />
-            <PasswordField fx:id="passwordField" prefHeight="40.0" prefWidth="250.0" promptText="Password" />
+                    <PasswordField fx:id="passwordField"
+                                prefHeight="40"
+                                maxWidth="300"
+                                promptText="Password" />
 
-            <Button fx:id="loginButton" onAction="#handleLogin" prefHeight="40.0" prefWidth="250.0" style="-fx-background-color: #3B82F6; -fx-text-fill: white; -fx-font-size: 16px;" text="Login" />
+                    <Button fx:id="loginButton"
+                            onAction="#handleLogin"
+                            prefHeight="40"
+                            maxWidth="300"
+                            text="Login"
+                            style="-fx-background-color: #3B82F6; -fx-text-fill: white; -fx-font-size: 16;" />
 
-            <Label style="-fx-text-fill: #3B82F6; -fx-underline: true;" text="Forgot Password?" />
-        </children>
-        <padding>
-            <Insets bottom="20" left="20" right="20" top="20" />
-        </padding>
-    </VBox>
-
-</AnchorPane>
+                    <Label text="Forgot Password?"
+                        style="-fx-text-fill: #3B82F6; -fx-underline: true;" />
+                </children>
+            </VBox>
+        </StackPane>
+    </center>
+</BorderPane>
