@@ -13,10 +13,12 @@
 <BorderPane xmlns="http://javafx.com/javafx/25"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="controllers.LoginController">
+
+    <!-- Top Header -->
     <top>
         <BorderPane prefHeight="100" style="-fx-background-color: #3B82F6;">
             <center>
-                <Label text="LOGIN" style="-fx-text-fill: white;">
+                <Label text="Welcome to Lambda" style="-fx-text-fill: white;">
                     <font>
                         <Font name="Arial Bold" size="30" />
                     </font>
@@ -24,30 +26,39 @@
             </center>
         </BorderPane>
     </top>
+
+    <!-- Center Login Form -->
     <center>
         <StackPane>
             <VBox spacing="15"
-                alignment="CENTER"
-                prefWidth="520"
-                maxWidth="520"
-                prefHeight="400"
-                maxHeight="400"
-                style="-fx-background-color: #f2f2f2; 
-                        -fx-background-radius: 15; 
-                        -fx-padding: 30;
-                        -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.25), 15, 0, 0, 4);">
+                  alignment="CENTER"
+                  prefWidth="520"
+                  maxWidth="520"
+                  prefHeight="400"
+                  maxHeight="400"
+                  style="-fx-background-color: #f2f2f2; 
+                         -fx-background-radius: 15; 
+                         -fx-padding: 30;
+                         -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.25), 15, 0, 0, 4);">
 
                 <children>
+                    <!-- Form Title -->
+                    <Label text="Login"
+                           style="-fx-font-size: 22; -fx-font-weight: bold; -fx-text-fill: #333;" />
+
+                    <!-- Username Field -->
                     <TextField fx:id="usernameField"
-                            prefHeight="40"
-                            maxWidth="300"
-                            promptText="Username" />
+                               prefHeight="40"
+                               maxWidth="300"
+                               promptText="Username" />
 
+                    <!-- Password Field -->
                     <PasswordField fx:id="passwordField"
-                                prefHeight="40"
-                                maxWidth="300"
-                                promptText="Password" />
+                                   prefHeight="40"
+                                   maxWidth="300"
+                                   promptText="Password" />
 
+                    <!-- Login Button -->
                     <Button fx:id="loginButton"
                             onAction="#handleLogin"
                             prefHeight="40"
@@ -55,8 +66,9 @@
                             text="Login"
                             style="-fx-background-color: #3B82F6; -fx-text-fill: white; -fx-font-size: 16;" />
 
+                    <!-- Forgot Password -->
                     <Label text="Forgot Password?"
-                        style="-fx-text-fill: #3B82F6; -fx-underline: true;" />
+                           style="-fx-text-fill: #3B82F6; -fx-underline: true;" />
                 </children>
             </VBox>
         </StackPane>
