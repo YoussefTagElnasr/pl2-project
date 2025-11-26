@@ -12,7 +12,7 @@
 
 <BorderPane xmlns="http://javafx.com/javafx/25"
             xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="controllers.LoginController">
+            fx:controller="views.login.Login">
 
     <top>
         <BorderPane prefHeight="100" style="-fx-background-color: #3B82F6;">
@@ -54,7 +54,7 @@
                                    promptText="Password" />
 
                     <Button fx:id="loginButton"
-                            onAction="#handleLogin"
+                            onAction="#loginButtonClick"
                             prefHeight="40"
                             maxWidth="300"
                             text="Login"
