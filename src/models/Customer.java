@@ -4,13 +4,12 @@ public class Customer {
     private String email;
     private String password;
     private String name;
-    private String role;
+    private String role = "customer";
 
-    public Customer(String email , String password , String name , String role){
+    public Customer(String email, String password, String name) {
         this.email = email;
         this.password = password;
         this.name = name;
-        this.role = role;
     }
 
     public String getEmail() {
