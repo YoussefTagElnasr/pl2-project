@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane xmlns="http://javafx.com/javafx/25"
+            xmlns:fx="http://javafx.com/fxml/1"
+                                                >
+
+    <!-- Top Header -->
+    <top>
+        <BorderPane prefHeight="100" style="-fx-background-color: #3B82F6;">
+            <center>
+                <Label text="Create Your Account" style="-fx-text-fill: white;">
+                    <font>
+                        <Font name="Arial Bold" size="30" />
+                    </font>
+                </Label>
+            </center>
+        </BorderPane>
+    </top>
+
+    <!-- Center Form -->
+    <center>
+        <StackPane>
+            <VBox spacing="15"
+                  alignment="CENTER"
+                  prefWidth="520"
+                  maxWidth="520"
+                  prefHeight="500"
+                  maxHeight="500"
+                  style="-fx-background-color: #f2f2f2; 
+                         -fx-background-radius: 15; 
+                         -fx-padding: 30;
+                         -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.25), 15, 0, 0, 4);">
+
+                <children>
+
+                    <Label text="Register"
+                           style="-fx-font-size: 22; -fx-font-weight: bold; -fx-text-fill: #333;" />
+
+                    <TextField fx:id="nameField"
+                               prefHeight="40"
+                               maxWidth="300"
+                               promptText="Full Name" />
+
+                    <TextField fx:id="emailField"
+                               prefHeight="40"
+                               maxWidth="300"
+                               promptText="Email" />
+
+                    <PasswordField fx:id="passwordField"
+                                   prefHeight="40"
+                                   maxWidth="300"
+                                   promptText="Password" />
+
+                    <PasswordField fx:id="confirmPasswordField"
+                                   prefHeight="40"
+                                   maxWidth="300"
+                                   promptText="Confirm Password" />
+
+                    <!-- Role dropdown (items will be added in controller) -->
+                    <ComboBox fx:id="roleComboBox"
+                              prefHeight="40"
+                              maxWidth="300"
+                              promptText="Select Role" />
+
+                    <Button fx:id="registerButton"
+                            prefHeight="40"
+                            maxWidth="300"
+                            text="Register"
+                            style="-fx-background-color: #3B82F6; 
+                                   -fx-text-fill: white; 
+                                   -fx-font-size: 16;"
+                    />
+                </children>
+
+            </VBox>
+        </StackPane>
+    </center>
+
+</BorderPane>
