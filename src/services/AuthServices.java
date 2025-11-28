@@ -5,7 +5,7 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public class AuthServices {
-    public static String getUserRole(String email, String password) {
+    public static String getUserRole(String username, String password) {
     String filePath = "files/users.txt";
 
     try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
@@ -17,11 +17,11 @@ public class AuthServices {
             String[] parts = line.split("\\|");
             if (parts.length != 5) continue;
 
-            String fileEmail = parts[2];
+            String fileName = parts[1];
             String filePassword = parts[3];
             String role = parts[4];
 
-            if (fileEmail.equals(email) && filePassword.equals(password)) {
+            if (fileName.equals(username) && filePassword.equals(password)) {
                 return role;
             }
         }
