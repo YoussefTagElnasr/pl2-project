@@ -1,7 +1,6 @@
 package views.login;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.PasswordField;
@@ -30,5 +29,4 @@ public class Login {
             Alerts.showAlert("the username or password may be wrong" , "login failed");
         }
     }
-
 }
