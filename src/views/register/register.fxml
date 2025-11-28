@@ -2,7 +2,6 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
@@ -12,10 +11,8 @@
 <?import javafx.scene.text.Font?>
 
 <BorderPane xmlns="http://javafx.com/javafx/25"
-            xmlns:fx="http://javafx.com/fxml/1"
-                                                >
+            xmlns:fx="http://javafx.com/fxml/1">
 
-    <!-- Top Header -->
     <top>
         <BorderPane prefHeight="100" style="-fx-background-color: #3B82F6;">
             <center>
@@ -28,15 +25,14 @@
         </BorderPane>
     </top>
 
-    <!-- Center Form -->
     <center>
         <StackPane>
             <VBox spacing="15"
                   alignment="CENTER"
                   prefWidth="520"
                   maxWidth="520"
-                  prefHeight="500"
-                  maxHeight="500"
+                  prefHeight="480"
+                  maxHeight="480"
                   style="-fx-background-color: #f2f2f2; 
                          -fx-background-radius: 15; 
                          -fx-padding: 30;
@@ -67,20 +63,25 @@
                                    maxWidth="300"
                                    promptText="Confirm Password" />
 
-                    <!-- Role dropdown (items will be added in controller) -->
-                    <ComboBox fx:id="roleComboBox"
-                              prefHeight="40"
-                              maxWidth="300"
-                              promptText="Select Role" />
-
                     <Button fx:id="registerButton"
                             prefHeight="40"
                             maxWidth="300"
                             text="Register"
                             style="-fx-background-color: #3B82F6; 
                                    -fx-text-fill: white; 
-                                   -fx-font-size: 16;"
-                    />
+                                   -fx-font-size: 16;" />
+
+                    <Button fx:id="backToLoginButton"
+                            prefHeight="35"
+                            maxWidth="300"
+                            text="Back to Login"
+                            style="-fx-background-color: transparent; 
+                                   -fx-text-fill: #3B82F6; 
+                                   -fx-font-size: 14; 
+                                   -fx-border-color: #3B82F6;
+                                   -fx-border-radius: 8;
+                                   -fx-background-radius: 8;" />
+
                 </children>
 
             </VBox>
