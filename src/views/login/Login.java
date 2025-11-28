@@ -6,6 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.PasswordField;
 import controllers.LoginController;
+import view_utils.Alerts;
 
 public class Login {
 
@@ -26,15 +27,8 @@ public class Login {
         try {
             LoginController.handleLogin(username, password);
         } catch (SecurityException e) {
-            showAlert();
+            Alerts.showAlert("the username or password may be wrong" , "login failed");
         }
     }
 
-    private void showAlert() {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("Login Failed");
-        alert.setHeaderText(null);
-        alert.setContentText("The username or password may not be correct!");
-        alert.showAndWait();
-    }
 }
