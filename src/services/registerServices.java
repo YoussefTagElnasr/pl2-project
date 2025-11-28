@@ -4,29 +4,51 @@ import models.Customer;
 import java.io.*;
 import java.util.*;
 
-public class registerServices {
+public class RegisterServices {
 
-    private static final String USERS_FILE = "users.txt";
+    private static final String FILE_PATH = "files/users.txt"; // Path must exist
 
     public static boolean register(Customer customer) {
         try {
+            File file = new File(FILE_PATH);
+            if (!file.exists()) {
+                // If file doesn't exist, create it with header
+                PrintWriter writer = new PrintWriter(new FileWriter(file));
+                writer.println("id|name|email|password|role");
+                writer.close();
+            } else {
+                // Ensure last line ends with a newline
+                try (RandomAccessFile raf = new RandomAccessFile(file, "rw")) {
+                    long length = raf.length();
+                    if (length > 0) {
+                        raf.seek(length - 1);
+                        byte lastByte = raf.readByte();
+                        if (lastByte != '\n' && lastByte != '\r') {
+                            raf.writeBytes(System.lineSeparator());
+                        }
+                    }
+                }
+            }
+
+            // Check if email already exists
             if (emailExists(customer.getEmail())) {
                 return false;
             }
 
             int nextId = getNextId();
 
-            FileWriter fw = new FileWriter(USERS_FILE, true);
-            BufferedWriter bw = new BufferedWriter(fw);
-            PrintWriter out = new PrintWriter(bw);
+            // Append new user
+            try (FileWriter fw = new FileWriter(FILE_PATH, true);
+                 BufferedWriter bw = new BufferedWriter(fw);
+                 PrintWriter out = new PrintWriter(bw)) {
 
-            out.println(nextId + "|" 
-                    + customer.getName() + "|" 
-                    + customer.getEmail() + "|" 
-                    + customer.getPassword() + "|" 
-                    + customer.getRole());
+                out.println(nextId + "|" 
+                        + customer.getName() + "|" 
+                        + customer.getEmail() + "|" 
+                        + customer.getPassword() + "|" 
+                        + customer.getRole());
+            }
 
-            out.close();
             return true;
 
         } catch (IOException e) {
@@ -35,28 +57,24 @@ public class registerServices {
         }
     }
 
-    private static boolean emailExists(String email) {
-        try {
-            File file = new File(USERS_FILE);
-            if (!file.exists()) return false;
-
-            Scanner scanner = new Scanner(file);
-
+    public static boolean emailExists(String email) {
+        try (Scanner scanner = new Scanner(new File(FILE_PATH))) {
+            boolean firstLine = true;
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine().trim();
                 if (line.isEmpty()) continue;
 
-                String[] parts = line.split("\\|");
+                if (firstLine) {
+                    firstLine = false;
+                    continue;
+                }
 
-                if (parts.length >= 3) {
-                    String existingEmail = parts[2];
-                    if (existingEmail.equalsIgnoreCase(email)) {
-                        scanner.close();
-                        return true;
-                    }
+                String[] parts = line.split("\\|");
+                if (parts.length >= 3 && parts[2].equalsIgnoreCase(email)) {
+                    return true;
                 }
             }
-            scanner.close();
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -66,25 +84,23 @@ public class registerServices {
     private static int getNextId() {
         int maxId = 0;
 
-        try {
-            File file = new File(USERS_FILE);
-            if (!file.exists()) return 1;
-
-            Scanner scanner = new Scanner(file);
-
+        try (Scanner scanner = new Scanner(new File(FILE_PATH))) {
+            boolean firstLine = true;
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine().trim();
                 if (line.isEmpty()) continue;
 
-                String[] parts = line.split("\\|");
+                if (firstLine) {
+                    firstLine = false;
+                    continue;
+                }
 
-                int id = Integer.parseInt(parts[0]);
-                if (id > maxId) {
-                    maxId = id;
+                String[] parts = line.split("\\|");
+                if (parts.length >= 1 && parts[0].matches("\\d+")) {
+                    int id = Integer.parseInt(parts[0]);
+                    if (id > maxId) maxId = id;
                 }
             }
-
-            scanner.close();
 
         } catch (Exception e) {
             e.printStackTrace();
