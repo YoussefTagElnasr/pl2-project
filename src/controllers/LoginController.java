@@ -7,7 +7,6 @@ public class LoginController {
         String role = AuthServices.getUserRole(username, password);
         if (role != null) {
             CurrentUser.setInstance(username, role);
-            //TODO right here we need to switch the scene for diffrent roles
         } else {
             throw new SecurityException("role was null");
         }
