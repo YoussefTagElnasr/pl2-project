@@ -1,5 +1,5 @@
-id|name|email|password|role
-1|Ali Ahmed|ali@gmail.com|1234|customer
-2|Sara Mostafa|sara@gmail.com|123|pm
-3|Omar|omar@gmail.com|pass|sp
-4|Admin|admin@gmail.com|admin|admin
+name|email|password|role
+Ali Ahmed|ali@gmail.com|1234|customer
+Sara Mostafa|sara@gmail.com|123|pm
+Omar|omar@gmail.com|pass|sp
+Admin|admin@gmail.com|admin|admin
