@@ -76,6 +76,7 @@
                     <Button fx:id="backToLoginButton"
                             prefHeight="35"
                             maxWidth="300"
+                            onAction="#goBackToLogin"
                             text="Back to Login"
                             style="-fx-background-color: transparent; 
                                    -fx-text-fill: #3B82F6; 
