@@ -1,1 +1,3 @@
 customer|customer_email|details|status|price|readyDate
+Ali|ali@mail.com|Fix homepage|pending||
+Sara|sara@mail.com|New logo|ready|2000|2025-12-10
