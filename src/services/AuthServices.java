@@ -3,9 +3,10 @@ package services;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import models.UserAuthData;
 
 public class AuthServices {
-    public static String getUserRole(String username, String password) {
+    public static UserAuthData authenticate(String username, String password) {
         String filePath = "files/users.txt";
 
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
@@ -17,18 +18,19 @@ public class AuthServices {
                 String[] parts = line.split("\\|");
                 if (parts.length != 4) continue;
 
+                String name = parts[0];
                 String email = parts[1];
                 String filePassword = parts[2];
                 String role = parts[3];
 
                 if (email.equals(username) && filePassword.equals(password)) {
-                    return role;
+                    return new UserAuthData(name, email, role);
                 }
             }
-
-            } catch (IOException e) {
-                System.out.println(e);
-            }
-            return null;
+        } catch (IOException e) {
+            System.out.println(e);
         }
+        return null;
+    }
+
 }
