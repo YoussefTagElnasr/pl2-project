@@ -7,7 +7,10 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import models.AdminRequest;
+import models.CurrentUser;
+
 import java.util.ArrayList;
+import javafx.scene.control.Label;
 
 
 
@@ -26,6 +29,8 @@ public class Admin {
     private TableColumn<AdminRequest, Integer> priceColumn;
     @FXML
     private TableColumn<AdminRequest, String> readyDateColumn;
+    @FXML
+    private Label adminName;
 
     @FXML
     public void initialize(){
@@ -40,5 +45,9 @@ public class Admin {
         ObservableList<AdminRequest> observableRequests = FXCollections.observableArrayList(requestsList);
 
         requstsTable.setItems(observableRequests);
+
+        if (CurrentUser.getInstance() != null) {
+        adminName.setText(CurrentUser.getInstance().getName());
+        }
     }
 }
