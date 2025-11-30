@@ -27,9 +27,18 @@ public class Login {
     private void loginButtonClick() {
         String username = usernameField.getText();
         String password = passwordField.getText();
+        String filePath = "/views/admin/admin.fxml";
+        Stage stage = (Stage) usernameField.getScene().getWindow();
 
         try {
-            LoginController.handleLogin(username, password);
+            String role =LoginController.handleLogin(username, password);
+            if (role.equals("admin")){
+                try{
+                    new SwitchScenes().changeScene(filePath, stage);
+                } catch(IOException e){
+                    System.out.println(e.getMessage());
+                }
+            }
         } catch (SecurityException e) {
             Alerts.showAlert("the username or password may be wrong" , "login failed");
         }
