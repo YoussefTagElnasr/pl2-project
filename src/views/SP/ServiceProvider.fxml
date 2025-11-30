@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ServiceProviderController">
+
+    <!-- title -->
+    <Label layoutX="150" layoutY="20" style="-fx-font-size: 22px; -fx-font-weight: bold;" text="Service Provider Dashboard" />
+
+    <!-- main -->
+    <VBox alignment="CENTER" layoutX="0" layoutY="60" prefWidth="600" spacing="15">
+
+        <TableView fx:id="tableRequests" prefHeight="250" prefWidth="580">
+            <columns>
+                <TableColumn fx:id="colRequestID" prefWidth="105.59997254610062" text="Request ID" />
+                <TableColumn fx:id="colCustomer" prefWidth="169.6000518798828" text="Customer" />
+                <TableColumn fx:id="colDescription" prefWidth="323.20001220703125" text="Description" />
+            </columns>
+        </TableView>
+
+        <HBox alignment="CENTER" spacing="10">
+            <Label text="Price:" />
+            <TextField fx:id="txtPrice" prefWidth="150" promptText="Enter price" />
+
+            <Label text="Ready Date:" />
+            <DatePicker fx:id="dateReady" prefHeight="21.0" prefWidth="180.0" />
+        </HBox>
+
+        <Button fx:id="btnSubmit" prefWidth="250" text="Submit Price &amp; Ready Date" />
+    </VBox>
+
+</AnchorPane>
