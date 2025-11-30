@@ -15,11 +15,11 @@ public class AuthServices {
                 if (line.trim().isEmpty()) continue;
 
                 String[] parts = line.split("\\|");
-                if (parts.length != 5) continue;
+                if (parts.length != 4) continue;
 
-                String fileName = parts[1];
-                String filePassword = parts[3];
-                String role = parts[4];
+                String fileName = parts[0];
+                String filePassword = parts[2];
+                String role = parts[3];
 
                 if (fileName.equals(username) && filePassword.equals(password)) {
                     return role;

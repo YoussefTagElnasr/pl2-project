@@ -60,8 +60,9 @@
                             text="Login"
                             style="-fx-background-color: #3B82F6; -fx-text-fill: white; -fx-font-size: 16;" />
 
-                    <Label text="Forgot Password?"
-                           style="-fx-text-fill: #3B82F6; -fx-underline: true;" />
+                    <Label text="Don’t have an account? Register"
+                           onMouseClicked="#goToRegister"
+                           style="-fx-text-fill: #3B82F6; -fx-underline: true; -fx-cursor: hand;" />
                 </children>
             </VBox>
         </StackPane>

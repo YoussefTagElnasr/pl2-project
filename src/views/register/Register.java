@@ -1,12 +1,18 @@
 package views.register;
 
 import javafx.fxml.FXML;
+import javafx.stage.Stage;
+
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Button;
+
 import models.Customer;
 import view_utils.Alerts;
+import view_utils.SwitchScenes;
 import controllers.RegisterController;
+
+import java.io.IOException;
 
 
 public class Register {
@@ -47,4 +53,14 @@ public class Register {
         }
     }
 
+    @FXML
+    public void goBackToLogin(){
+        try{
+            String filePath = "/views/login/login.fxml";
+            Stage stage = (Stage) nameField.getScene().getWindow();
+            new SwitchScenes().changeScene(filePath, stage);
+        } catch(IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
 }
