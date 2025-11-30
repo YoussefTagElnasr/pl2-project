@@ -1,6 +1,6 @@
 package services;
 
-import models.Request;
+import models.AdminRequest;
 import java.io.*;
 import java.util.ArrayList;
 
@@ -8,8 +8,8 @@ public class RequestServices {
 
     private static final String FILE_PATH = "files/requests.txt";
 
-    public static ArrayList<Request> getAllRequests() {
-        ArrayList<Request> requests = new ArrayList<>();
+    public static ArrayList<AdminRequest> getAllRequests() {
+        ArrayList<AdminRequest> requests = new ArrayList<>();
 
         try {
             File file = new File(FILE_PATH);
@@ -38,7 +38,7 @@ public class RequestServices {
                 int price = parts[4].equals("-") ? 0 : Integer.parseInt(parts[4]);
                 String readyDate = parts[5].equals("-") ? "" : parts[5];
 
-                Request request = new Request(customer, email, detail, status, price, readyDate);
+                AdminRequest request = new AdminRequest(customer, email, detail, status, price, readyDate);
                 requests.add(request);
             }
 
