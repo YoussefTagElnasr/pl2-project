@@ -1,9 +1,6 @@
 package views.login;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -13,6 +10,7 @@ import java.io.IOException;
 
 import controllers.LoginController;
 import view_utils.Alerts;
+import view_utils.SwitchScenes;
 
 public class Login {
 
@@ -38,11 +36,13 @@ public class Login {
     }
 
     @FXML
-    public void goToRegister() throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/views/register/register.fxml"));
-        Stage stage = (Stage) usernameField.getScene().getWindow();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+    public void goToRegister(){
+        try{
+            String filePath = "/views/register/register.fxml";
+            Stage stage = (Stage) usernameField.getScene().getWindow();
+            new SwitchScenes().changeScene(filePath, stage);
+        } catch(IOException e) {
+            System.out.println(e.getMessage());
+        }
     }
 }
