@@ -17,11 +17,11 @@ public class AuthServices {
                 String[] parts = line.split("\\|");
                 if (parts.length != 4) continue;
 
-                String fileName = parts[0];
+                String email = parts[1];
                 String filePassword = parts[2];
                 String role = parts[3];
 
-                if (fileName.equals(username) && filePassword.equals(password)) {
+                if (email.equals(username) && filePassword.equals(password)) {
                     return role;
                 }
             }
