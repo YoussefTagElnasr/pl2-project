@@ -11,6 +11,7 @@ import java.io.IOException;
 import controllers.LoginController;
 import view_utils.Alerts;
 import view_utils.SwitchScenes;
+import models.CurrentUser;
 
 public class Login {
 
@@ -31,8 +32,8 @@ public class Login {
         Stage stage = (Stage) usernameField.getScene().getWindow();
 
         try {
-            String role =LoginController.handleLogin(username, password);
-            if (role.equals("admin")){
+            CurrentUser user = LoginController.handleLogin(username, password);
+            if (user.getRole().equals("admin")){
                 try{
                     new SwitchScenes().changeScene(filePath, stage);
                 } catch(IOException e){
