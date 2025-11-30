@@ -38,14 +38,14 @@
               AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0"
               AnchorPane.bottomAnchor="20.0">
 
-            <TableView fx:id="RequstsTable" VBox.vgrow="ALWAYS">
+            <TableView fx:id="requstsTable" VBox.vgrow="ALWAYS">
                 <columns>
-                    <TableColumn text="customer" prefWidth="100"/>
-                    <TableColumn text="email" prefWidth="100"/>
-                    <TableColumn text="details" prefWidth="100"/>
-                    <TableColumn text="status" prefWidth="100"/>
-                    <TableColumn text="price" prefWidth="100"/>
-                    <TableColumn text="ready_date" prefWidth="100"/>
+                    <TableColumn fx:id="customerColumn" text="customer" prefWidth="100"/>
+                    <TableColumn fx:id="emailColumn" text="email" prefWidth="100"/>
+                    <TableColumn fx:id="detailColumn" text="details" prefWidth="100"/>
+                    <TableColumn fx:id="statusColumn" text="status" prefWidth="100"/>
+                    <TableColumn fx:id="priceColumn" text="price" prefWidth="100"/>
+                    <TableColumn fx:id="readyDateColumn" text="ready_date" prefWidth="100"/>
                 </columns>
             </TableView>
 
