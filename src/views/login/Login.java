@@ -31,7 +31,7 @@ public class Login {
         try {
             LoginController.handleLogin(username, password);
         } catch (SecurityException e) {
-            Alerts.showAlert("the username or password may be wrong" , "login failed");
+            Alerts.showAlert(e.getMessage() , "login failed");
         }
     }
 
