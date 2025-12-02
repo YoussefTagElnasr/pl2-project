@@ -7,8 +7,8 @@ import java.util.List;
 import models.Request;
 
 public class RequestServices {
-    public static List<Request> getPendingRequests() {
-        List<Request> pendingRequests = new ArrayList<>();
+    public static List<Request> getRequests(String ReqStatus) {
+        List<Request> requiredRequests = new ArrayList<>();
         String filepath = "files/requests.txt";
 
         try (BufferedReader reader = new BufferedReader(new FileReader(filepath))) {
@@ -22,7 +22,7 @@ public class RequestServices {
                 if (parts.length != 6) {
                     continue;
                 }
-
+                //Robert King|king.robert@mail.com|Invoice generator UI|approved||
                 String name = parts[0];
                 String email = parts[1];
                 String details = parts[2];
@@ -30,9 +30,9 @@ public class RequestServices {
                 String price = parts[4];
                 String readyDate = parts[5];
 
-                if(status.equals("pending")) {
+                if(status.equals(ReqStatus)) {
                     Request request = new Request(name, email, details, status, price, readyDate);
-                    pendingRequests.add(request);
+                    requiredRequests.add(request);
                 }
                 else
                     continue;
@@ -41,45 +41,11 @@ public class RequestServices {
         } catch (IOException e) {
             System.out.println("Error reading requests file :"+e.getMessage());
         }
-    return pendingRequests;
-    }
-    public static List<Request> getReadyRequests() {
-        List<Request> readyRequests = new ArrayList<>();
-        String filepath = "files/requests.txt";
+    return requiredRequests;
 
-        try (BufferedReader reader = new BufferedReader(new FileReader(filepath))) {
 
-            String line;
-            while ((line = reader.readLine()) != null) {
-                if (line.trim().isEmpty()) {
-                    continue;
-                }
-                String[] parts = line.split("\\|",-1);
-                if (parts.length != 6) {
-                    continue;
-                }
 
-                String name = parts[0];
-                String email = parts[1];
-                String details = parts[2];
-                String status = parts[3];
-                String price = parts[4];
-                String readyDate = parts[5];
-
-                if(status.equals("ready")) {
-                    Request request = new Request(name, email, details, status, price, readyDate);
-                    readyRequests.add(request);
-                }
-                else
-                    continue;
-            }
-
-        } catch (IOException e) {
-            System.out.println("Error reading requests file :"+e.getMessage());
-        }
-    return readyRequests;
-    }
-    public static List<Request> approveRequest(Request targetRequest) {
+    } public static List<Request> processRequest(Request targetRequest,String newStatus) {
         List<Request> updatedRequests = new ArrayList<>();
         String filepath = "files/requests.txt";
 
@@ -103,10 +69,10 @@ public class RequestServices {
                 String readyDate = parts[5];
 
                 if(name.equals(targetRequest.getName())&&email.equals(targetRequest.getEmail())&&details.equals(targetRequest.getDetails())) {
-                    status = "approved";
+                    status = newStatus;
                 }
-                    Request request = new Request(name, email, details, status, price, readyDate);
-                    updatedRequests.add(request);
+                Request request = new Request(name, email, details, status, price, readyDate);
+                updatedRequests.add(request);
 
             }
 
@@ -128,5 +94,4 @@ public class RequestServices {
             System.out.println("Error writing requests file :"+e.getMessage());
         }
     }
-
 }
