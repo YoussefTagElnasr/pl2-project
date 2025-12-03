@@ -28,14 +28,14 @@ public class Login {
     private void loginButtonClick() {
         String username = usernameField.getText();
         String password = passwordField.getText();
-        String filePath = "/views/admin/admin.fxml";
+        String adminPath = "/views/admin/admin.fxml";
         Stage stage = (Stage) usernameField.getScene().getWindow();
 
         try {
             CurrentUser user = LoginController.handleLogin(username, password);
             if (user.getRole().equals("admin")){
                 try{
-                    new SwitchScenes().changeScene(filePath, stage);
+                    new SwitchScenes().changeScene(adminPath, stage);
                 } catch(IOException e){
                     System.out.println(e.getMessage());
                 }
