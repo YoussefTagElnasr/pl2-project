@@ -1,1 +1,22 @@
-customer|customer_email|message|response
+Charlie|charlie@example.com|Thank you for the previous support.|Thanks!|true
+Alice|alice@example.com|Hi, I need help with my order.|[2025-12-03 15:04] Test
+[2025-12-03 15:30] Test|true
+Bob|bob@example.com|Can I change my delivery address?| |false
+Charlie|charlie@example.com|Thank you for the previous support.|Thanks!|true
+Diana|diana@example.com|My product arrived damaged.| |false
+Ethan|ethan@example.com|How do I apply a discount code?| |false
+Alice|alice@example.com|Hi, I need help with my order.| |false
+Bob|bob@example.com|Can I change my delivery address?| |false
+Charlie|charlie@example.com|Thank you for the previous support.|Thanks!|true
+Diana|diana@example.com|My product arrived damaged.| |false
+Ethan|ethan@example.com|How do I apply a discount code?| |false
+Alice|alice@example.com|Hi, I need help with my order.| |false
+Bob|bob@example.com|Can I change my delivery address?| |false
+Charlie|charlie@example.com|Thank you for the previous support.|Thanks!|true
+Diana|diana@example.com|My product arrived damaged.| |false
+Ethan|ethan@example.com|How do I apply a discount code?| |false
+Alice|alice@example.com|Hi, I need help with my order.| |false
+Bob|bob@example.com|Can I change my delivery address?| |false
+Charlie|charlie@example.com|Thank you for the previous support.|Thanks!|true
+Diana|diana@example.com|My product arrived damaged.| |false
+Ethan|ethan@example.com|How do I apply a discount code?| |false
