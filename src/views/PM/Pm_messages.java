@@ -33,10 +33,16 @@ public class Pm_messages {
     @FXML
     private Button handledButton;
 
-    private List<Message> messagesData = new ArrayList<>();
-    private final String filePath = "C:\\Users\\Joee\\Documents\\GitHub\\pl2-project\\files\\messages.txt";
+    @FXML
+    private Button markUnhandledButton;
 
-    // Inner class for message data
+    private List<Message> messagesData = new ArrayList<>();
+
+    private final String filePath = "files/messages.txt";
+
+    // Track current tab: false = Need Response, true = Handled
+    private boolean showingHandled = false;
+
     private static class Message {
         String customer;
         String email;
@@ -56,106 +62,113 @@ public class Pm_messages {
     public void initialize() {
         loadMessages();
         updateCounters();
+        populateFilteredList(false); // load unhandled by default
 
-        // Load ONLY unhandled (need response) messages by default
-        populateFilteredList(false);
-
-        // Cell factory
+        // List cell style based on read status
         messagesListView.setCellFactory(lv -> new ListCell<>() {
             @Override
             protected void updateItem(String item, boolean empty) {
                 super.updateItem(item, empty);
-
                 if (empty || item == null) {
                     setText(null);
                     setStyle("");
                     return;
                 }
-
                 setText(item);
                 Message m = getMessageByCustomer(item);
-
-                if (m != null && m.response.trim().isEmpty()) {
-                    setStyle("-fx-font-weight:bold; -fx-text-fill:red;");
-                } else {
-                    setStyle("");
+                if (m != null) {
+                    setStyle(!m.read ? "-fx-font-weight:bold; -fx-text-fill:red;" : "");
                 }
             }
         });
 
-        // On selecting a message
         messagesListView.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
             if (newVal != null) {
                 Message m = getMessageByCustomer(newVal);
-                if (m != null) showMessageDetails(m);
+                if (m != null) {
+                    showMessageDetails(m);
+                    markUnhandledButton.setDisable(!m.read); // only enable for handled messages
+                }
             }
         });
 
-        // Respond button
         respondButton.setOnAction(e -> respondToMessage());
-
-        // Filter buttons
+        markUnhandledButton.setOnAction(e -> markAsUnhandled());
         needResponseButton.setOnAction(e -> populateFilteredList(false));
         handledButton.setOnAction(e -> populateFilteredList(true));
     }
 
     private void loadMessages() {
         messagesData.clear();
-        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+        File file = new File(filePath);
+
+        if (!file.exists()) {
+            try {
+                file.getParentFile().mkdirs();
+                file.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+                customerNameLabel.setText("Error creating messages file");
+                return;
+            }
+        }
+
+        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
             String line;
             while ((line = br.readLine()) != null) {
-                // Format: customer|email|message|response|read
                 String[] parts = line.split("\\|");
                 if (parts.length < 5) continue;
-
-                messagesData.add(new Message(
-                        parts[0],
-                        parts[1],
-                        parts[2],
-                        parts[3],
-                        Boolean.parseBoolean(parts[4])
-                ));
+                messagesData.add(new Message(parts[0], parts[1], parts[2], parts[3], Boolean.parseBoolean(parts[4])));
             }
         } catch (IOException e) {
             e.printStackTrace();
-            customerNameLabel.setText("Customer Name: (error reading file)");
+            customerNameLabel.setText("Error reading messages file");
         }
     }
 
     private void updateCounters() {
-        long need = messagesData.stream()
-                .filter(m -> m.response.trim().isEmpty())
-                .count();
-
-        long handled = messagesData.size() - need;
-
+        long need = messagesData.stream().filter(m -> !m.read).count();
+        long handled = messagesData.stream().filter(m -> m.read).count();
         needResponseButton.setText("Need Response (" + need + ")");
         handledButton.setText("Handled (" + handled + ")");
     }
 
     private void populateFilteredList(boolean handled) {
+        showingHandled = handled;
         messagesListView.getItems().clear();
 
+        List<Message> filtered = new ArrayList<>();
         for (Message m : messagesData) {
-            boolean hasResponse = !m.response.trim().isEmpty();
-
-            if (handled && hasResponse) {
-                messagesListView.getItems().add(m.customer);
-            }
-            if (!handled && !hasResponse) {
-                messagesListView.getItems().add(m.customer);
-            }
+            if (handled && m.read) filtered.add(m);
+            if (!handled && !m.read) filtered.add(m);
         }
 
-        if (!messagesListView.getItems().isEmpty()) {
+        if (handled) {
+            // Sort handled messages by response timestamp (newest first)
+            filtered.sort((m1, m2) -> getLastResponseTime(m2).compareTo(getLastResponseTime(m1)));
+        }
+
+
+        for (Message m : filtered) messagesListView.getItems().add(m.customer);
+
+        if (!messagesListView.getItems().isEmpty())
             messagesListView.getSelectionModel().selectFirst();
+    }
+
+    private LocalDateTime getLastResponseTime(Message m) {
+        if (m.response.trim().isEmpty()) return LocalDateTime.MIN;
+        String[] lines = m.response.split("\n");
+        String lastLine = lines[lines.length - 1];
+        try {
+            String timestampStr = lastLine.substring(1, 17);
+            return LocalDateTime.parse(timestampStr, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+        } catch (Exception e) {
+            return LocalDateTime.MIN;
         }
     }
 
     private Message getMessageByCustomer(String customer) {
-        for (Message m : messagesData) {
-            if (m.customer.equals(customer)) return m;
-        }
+        for (Message m : messagesData) if (m.customer.equals(customer)) return m;
         return null;
     }
 
@@ -164,14 +177,9 @@ public class Pm_messages {
         emailLabel.setText(m.email);
         messageLabel.setText(m.content);
         responseLabel.setText(m.response);
+        responseLabel.setStyle(!m.read ? "-fx-text-fill:gray;" : "-fx-text-fill:green;");
 
-        responseLabel.setStyle(
-                m.response.trim().isEmpty()
-                        ? "-fx-text-fill:gray;"
-                        : "-fx-text-fill:green;"
-        );
-
-        if (m.response.trim().isEmpty()) {
+        if (!m.read) {
             respondButton.setText("Respond");
             respondButton.setPrefWidth(108);
         } else {
@@ -183,7 +191,6 @@ public class Pm_messages {
     private void respondToMessage() {
         String selected = messagesListView.getSelectionModel().getSelectedItem();
         if (selected == null) return;
-
         Message m = getMessageByCustomer(selected);
         if (m == null) return;
 
@@ -193,17 +200,10 @@ public class Pm_messages {
         dialog.setContentText("Response:");
 
         Optional<String> result = dialog.showAndWait();
-
         result.ifPresent(response -> {
             if (response.trim().isEmpty()) return;
-
-            String timestamp = LocalDateTime.now()
-                    .format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
-
-            String newResponse = (m.response.trim().isEmpty() ? "" : m.response + "\n")
-                    + "[" + timestamp + "] " + response;
-
-            m.response = newResponse;
+            String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+            m.response = (m.response.trim().isEmpty() ? "" : m.response + "\n") + "[" + timestamp + "] " + response;
             m.read = true;
 
             responseLabel.setText(m.response);
@@ -213,7 +213,35 @@ public class Pm_messages {
 
             saveMessagesToFile();
             updateCounters();
-            populateFilteredList(false); // return to "Need Response"
+            populateFilteredList(showingHandled);
+            messagesListView.refresh();
+        });
+    }
+
+    private void markAsUnhandled() {
+        String selected = messagesListView.getSelectionModel().getSelectedItem();
+        if (selected == null) return;
+        Message m = getMessageByCustomer(selected);
+        if (m == null || !m.read) return;
+
+        TextInputDialog dialog = new TextInputDialog();
+        dialog.setTitle("Mark as Unhandled");
+        dialog.setHeaderText("Provide reason for moving this message back to Need Response");
+        dialog.setContentText("Reason:");
+
+        Optional<String> result = dialog.showAndWait();
+        result.ifPresent(reason -> {
+            if (reason.trim().isEmpty()) return;
+            String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+            m.response = m.response + "\n[" + timestamp + "] Moved to Need Response for: " + reason;
+            m.read = false;
+
+            responseLabel.setText(m.response);
+            responseLabel.setStyle("-fx-text-fill:gray;");
+
+            saveMessagesToFile();
+            updateCounters();
+            populateFilteredList(showingHandled); // refresh current tab
             messagesListView.refresh();
         });
     }
@@ -221,13 +249,7 @@ public class Pm_messages {
     private void saveMessagesToFile() {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(filePath))) {
             for (Message m : messagesData) {
-                bw.write(String.join("|",
-                        m.customer,
-                        m.email,
-                        m.content,
-                        m.response,
-                        String.valueOf(m.read)
-                ));
+                bw.write(String.join("|", m.customer, m.email, m.content, m.response, String.valueOf(m.read)));
                 bw.newLine();
             }
         } catch (IOException e) {
