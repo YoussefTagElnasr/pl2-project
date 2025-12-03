@@ -10,7 +10,9 @@ import javafx.scene.layout.HBox;
 import models.Request;
 import models.CurrentUser;
 import view_utils.SwitchScenes;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.List;
 
 ///send & recieve data from backend controller//
@@ -206,8 +208,8 @@ public class Pm_home {
     }
     @FXML
     private void onMessagesClicked() {
-        String filePath = "/views/pm_messages.fxml";
-        Stage stage = (Stage) messagesButton.getScene().getWindow()
+        String filePath = "views/pm_messages.fxml";
+        Stage stage = (Stage) messagesButton.getScene().getWindow();
         try{
             new SwitchScenes().changeScene(filePath, stage);
         } catch(IOException e){
