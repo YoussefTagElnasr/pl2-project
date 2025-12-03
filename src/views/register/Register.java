@@ -40,7 +40,7 @@ public class Register {
         String confirmPassord = confirmPasswordField.getText();
 
         if (!password.equals(confirmPassord)){
-            Alerts.showAlert( "password does not match" ,"password does not match");
+            Alerts.showErrorAlert( "password does not match" ,"password does not match");
             return;
         }
         
@@ -49,7 +49,7 @@ public class Register {
             RegisterController.handleRegister(user);
             
         } catch (IllegalArgumentException e){
-            Alerts.showAlert(e.getMessage() , "error");
+            Alerts.showErrorAlert(e.getMessage() , "error");
         }
     }
 

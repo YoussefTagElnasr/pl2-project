@@ -41,7 +41,7 @@ public class Login {
                 }
             }
         } catch (SecurityException e) {
-            Alerts.showAlert(e.getMessage() , "login failed");
+            Alerts.showErrorAlert(e.getMessage() , "login failed");
         }
     }
 
