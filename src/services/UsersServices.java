@@ -6,8 +6,9 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-
+import services.RegisterServices;
 import models.User;
+import models.Customer;
 
 public class UsersServices {
     public static ArrayList<User> loadAllUsers() {
@@ -77,4 +78,18 @@ public class UsersServices {
             return false;
         }
     }
+
+
+     public static boolean addUser(Customer user) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("users.txt", true))) {
+            if (RegisterServices.emailExists(user.getEmail())){return false;}
+            writer.write(user.getName() + "|" + user.getEmail() + "|" + user.getPassword() + "|" + user.getRole());
+            writer.newLine();
+            return true;
+        } catch (IOException e) {
+            System.out.println("Error adding user: " + e.getMessage());
+            return false;
+        }
+    }
+
 }

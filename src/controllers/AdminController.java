@@ -4,6 +4,7 @@ import models.AdminRequest;
 import services.RequestServices;
 import services.UsersServices;
 import models.User;
+import models.Customer;
 
 
 public class AdminController {
