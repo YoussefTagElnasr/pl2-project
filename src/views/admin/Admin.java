@@ -1,13 +1,13 @@
 package views.admin;
+
 import controllers.AdminController;
 import controllers.RegisterController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.util.Callback;
 import models.AdminRequest;
 import models.CurrentUser;
 import models.Customer;
@@ -15,12 +15,6 @@ import models.User;
 import view_utils.Alerts;
 
 import java.util.ArrayList;
-
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
-
-
 
 public class Admin {
     @FXML
@@ -63,9 +57,13 @@ public class Admin {
     private Button addButton;
 
     @FXML
-    public void initialize(){
+    public void initialize() {
+        usersTable.setColumnResizePolicy(param -> true);
+        requstsTable.setColumnResizePolicy(param -> true);
+
         myChoiceBox.getItems().addAll("sp", "pm", "admin", "customer");
         myChoiceBox.setValue("customer");
+
         customerColumn.setCellValueFactory(new PropertyValueFactory<>("customer"));
         emailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
         detailColumn.setCellValueFactory(new PropertyValueFactory<>("detail"));
@@ -75,9 +73,7 @@ public class Admin {
 
         ArrayList<AdminRequest> requestsList = AdminController.getAdminRequests();
         ObservableList<AdminRequest> observableRequests = FXCollections.observableArrayList(requestsList);
-
         requstsTable.setItems(observableRequests);
-
 
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         userEmailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
@@ -88,7 +84,7 @@ public class Admin {
         usersTable.setItems(FXCollections.observableArrayList(usersList));
 
         if (CurrentUser.getInstance() != null) {
-        adminName.setText(CurrentUser.getInstance().getName());
+            adminName.setText(CurrentUser.getInstance().getName());
         }
 
         deleteButton.setOnAction(e -> deleteSelectedUser());
@@ -100,9 +96,10 @@ public class Admin {
         User selectedUser = usersTable.getSelectionModel().getSelectedItem();
 
         if (selectedUser == null) {
-            Alerts.showErrorAlert("no user was selected" , "Error");
+            Alerts.showErrorAlert("No user was selected", "Error");
             return;
         }
+
         boolean deleted = AdminController.deleteUser(selectedUser.getEmail());
 
         if (deleted) {
@@ -112,24 +109,26 @@ public class Admin {
     }
 
     @FXML
-    private void addClickButton(){
+    private void addClickButton() {
         String name = nameField.getText();
         String email = emailField.getText();
         String password = passwordField.getText();
         String selectedRole = myChoiceBox.getValue();
-        
-        try{
+
+        try {
             Customer user = new Customer(email, password, name);
             user.setRole(selectedRole);
             RegisterController.handleRegister(user);
+
             ArrayList<User> allUsers = AdminController.getAllUsers();
             usersTable.setItems(FXCollections.observableArrayList(allUsers));
+
             nameField.clear();
             emailField.clear();
             passwordField.clear();
             myChoiceBox.setValue("customer");
-        } catch (IllegalArgumentException e){
-            Alerts.showErrorAlert(e.getMessage() , "error");
+        } catch (IllegalArgumentException e) {
+            Alerts.showErrorAlert(e.getMessage(), "Error");
         }
     }
 }
