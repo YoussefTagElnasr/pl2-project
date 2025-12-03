@@ -51,12 +51,12 @@
             </TableView>
 
             <TableView fx:id="usersTable" VBox.vgrow="ALWAYS">
-                <columns>
-                    <TableColumn text="name" prefWidth="150"/>
-                    <TableColumn text="email" prefWidth="150"/>
-                    <TableColumn text="password" prefWidth="150"/>
-                    <TableColumn text="role" prefWidth="150"/>
-                </columns>
+               <columns>
+                <TableColumn fx:id="nameColumn" text="name" prefWidth="150"/>
+                <TableColumn fx:id="userEmailColumn" text="email" prefWidth="150"/>
+                <TableColumn fx:id="passwordColumn" text="password" prefWidth="150"/>
+                <TableColumn fx:id="roleColumn" text="role" prefWidth="150"/>
+            </columns>
             </TableView>
 
             <HBox spacing="20" alignment="CENTER_LEFT">
