@@ -8,6 +8,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import models.AdminRequest;
 import models.CurrentUser;
+import models.User;
 
 import java.util.ArrayList;
 import javafx.scene.control.Label;
@@ -30,6 +31,16 @@ public class Admin {
     @FXML
     private TableColumn<AdminRequest, String> readyDateColumn;
     @FXML
+    private TableView<User> usersTable;
+    @FXML
+    private TableColumn<User, String> nameColumn;
+    @FXML
+    private TableColumn<User, String> userEmailColumn;
+    @FXML
+    private TableColumn<User, String> passwordColumn;
+    @FXML
+    private TableColumn<User, String> roleColumn;
+    @FXML
     private Label adminName;
 
     @FXML
@@ -45,6 +56,15 @@ public class Admin {
         ObservableList<AdminRequest> observableRequests = FXCollections.observableArrayList(requestsList);
 
         requstsTable.setItems(observableRequests);
+
+
+        nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        userEmailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
+        passwordColumn.setCellValueFactory(new PropertyValueFactory<>("password"));
+        roleColumn.setCellValueFactory(new PropertyValueFactory<>("role"));
+
+        ArrayList<User> usersList = AdminController.getAllUsers();
+        usersTable.setItems(FXCollections.observableArrayList(usersList));
 
         if (CurrentUser.getInstance() != null) {
         adminName.setText(CurrentUser.getInstance().getName());
