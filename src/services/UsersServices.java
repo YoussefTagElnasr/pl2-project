@@ -10,12 +10,10 @@ import java.util.ArrayList;
 import models.User;
 
 public class UsersServices {
-    String filePath = "files/users.txt";
-
-    public ArrayList<User> loadAllUsers() {
+    public static ArrayList<User> loadAllUsers() {
         ArrayList<User> users = new ArrayList<>();
 
-        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+        try (BufferedReader br = new BufferedReader(new FileReader("files/users.txt"))) {
             String line;
             br.readLine();
 
@@ -44,7 +42,7 @@ public class UsersServices {
     public boolean deleteUser(String emailToDelete) {
         ArrayList<String> lines = new ArrayList<>();
 
-        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+        try (BufferedReader br = new BufferedReader(new FileReader("files/users.txt"))) {
 
             String line;
             String header = br.readLine();
