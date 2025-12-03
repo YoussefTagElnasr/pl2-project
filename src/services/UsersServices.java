@@ -39,7 +39,7 @@ public class UsersServices {
     }
 
 
-    public boolean deleteUser(String emailToDelete) {
+    public static boolean deleteUser(String emailToDelete) {
         ArrayList<String> lines = new ArrayList<>();
 
         try (BufferedReader br = new BufferedReader(new FileReader("files/users.txt"))) {
@@ -65,7 +65,7 @@ public class UsersServices {
                 lines.add(line);
             }
 
-            try (BufferedWriter bw = new BufferedWriter(new FileWriter("users.txt"))) {
+            try (BufferedWriter bw = new BufferedWriter(new FileWriter("files/users.txt"))) {
                 for (String l : lines) {
                     bw.write(l);
                     bw.newLine();
