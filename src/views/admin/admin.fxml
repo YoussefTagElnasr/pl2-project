@@ -63,9 +63,6 @@
                 <Button fx:id="addButton" text="Add"
                         style="-fx-background-color: #10B981; -fx-text-fill: white; -fx-padding: 6 20;"/>
 
-                <Button fx:id="updateButton" text="Update Selected"
-                        style="-fx-background-color: #3B82F6; -fx-text-fill: white; -fx-padding: 6 20;"/>
-
                 <Button fx:id="deleteButton" text="Delete Selected"
                         style="-fx-background-color: #EF4444; -fx-text-fill: white; -fx-padding: 6 20;"/>
             </HBox>
