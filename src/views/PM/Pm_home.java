@@ -9,6 +9,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.layout.HBox;
 import models.Request;
 import models.CurrentUser;
+import view_utils.SwitchScenes;
 
 import java.util.List;
 
@@ -205,8 +206,13 @@ public class Pm_home {
     }
     @FXML
     private void onMessagesClicked() {
-        // Temporary: just to avoid crash while we test tables
-        System.out.println("Messages clicked (stub)");
+        String filePath = "/views/pm_messages.fxml";
+        Stage stage = (Stage) messagesButton.getScene().getWindow()
+        try{
+            new SwitchScenes().changeScene(filePath, stage);
+        } catch(IOException e){
+            System.out.println(e.getMessage());
+        }
     }
     @FXML
     private void onReloadClicked() {
