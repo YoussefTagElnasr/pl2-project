@@ -9,8 +9,11 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import models.AdminRequest;
 import models.CurrentUser;
 import models.User;
+import view_utils.Alerts;
 
 import java.util.ArrayList;
+
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
 
@@ -42,6 +45,8 @@ public class Admin {
     private TableColumn<User, String> roleColumn;
     @FXML
     private Label adminName;
+    @FXML
+    private Button deleteButton;
 
     @FXML
     public void initialize(){
@@ -68,6 +73,24 @@ public class Admin {
 
         if (CurrentUser.getInstance() != null) {
         adminName.setText(CurrentUser.getInstance().getName());
+        }
+
+        deleteButton.setOnAction(e -> deleteSelectedUser());
+    }
+
+    @FXML
+    private void deleteSelectedUser() {
+        User selectedUser = usersTable.getSelectionModel().getSelectedItem();
+
+        if (selectedUser == null) {
+            Alerts.showErrorAlert("no user was selected" , "Error");
+            return;
+        }
+        boolean deleted = AdminController.deleteUser(selectedUser.getEmail());
+
+        if (deleted) {
+            usersTable.getItems().remove(selectedUser);
+            Alerts.showSuccessAlert("User deleted successfully", "Success");
         }
     }
 }
