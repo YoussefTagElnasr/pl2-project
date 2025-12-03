@@ -10,7 +10,7 @@ public class Main extends Application {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/login/login.fxml"));
         Scene scene = new Scene(loader.load());
         stage.setScene(scene);
-        stage.setTitle("Login App");
+        stage.setTitle("Event management");
         stage.show();
     }
 
