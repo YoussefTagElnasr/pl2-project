@@ -1,85 +1,256 @@
 package views.PM;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.Button;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.scene.input.MouseEvent;
-
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.ArrayList;
+import javafx.scene.control.*;
+import java.io.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
 
 public class Pm_messages {
 
     @FXML
-    private ListView<String> messagesList;
+    private ListView<String> messagesListView;
 
     @FXML
-    private Label customerEmailLabel;
+    private Label customerNameLabel;
 
     @FXML
-    private TextArea messageContentArea;
+    private Label emailLabel;
+
+    @FXML
+    private TextArea messageLabel;
+
+    @FXML
+    private TextArea responseLabel;
 
     @FXML
     private Button respondButton;
 
-    // To store message objects
-    private ArrayList<Message> allMessages = new ArrayList<>();
+    @FXML
+    private Button needResponseButton;
 
-    // Inner class to store message info
+    @FXML
+    private Button handledButton;
+
+    @FXML
+    private Button markUnhandledButton;
+
+    private List<Message> messagesData = new ArrayList<>();
+
+    private final String filePath = "files/messages.txt";
+
+    // Track current tab: false = Need Response, true = Handled
+    private boolean showingHandled = false;
+
     private static class Message {
-        String name;
+        String customer;
         String email;
         String content;
+        String response;
+        boolean read;
 
-        Message(String name, String email, String content) {
-            this.name = name;
+        Message(String customer, String email, String content, String response, boolean read) {
+            this.customer = customer;
             this.email = email;
             this.content = content;
-        }
-
-        @Override
-        public String toString() {
-            return name + " (" + email + ")";
+            this.response = response;
+            this.read = read;
         }
     }
 
-    // Initialize method called automatically by JavaFX
-    @FXML
     public void initialize() {
-        loadMessagesFromFile("../../../files/messages.txt");
+        loadMessages();
+        updateCounters();
+        populateFilteredList(false); // load unhandled by default
 
-        ObservableList<String> items = FXCollections.observableArrayList();
-        for (Message msg : allMessages) {
-            items.add(msg.toString());  // Display name + email in ListView
-        }
-        messagesList.setItems(items);
-
-        // When user clicks a message, show details
-        messagesList.setOnMouseClicked((MouseEvent event) -> {
-            int selectedIndex = messagesList.getSelectionModel().getSelectedIndex();
-            if (selectedIndex >= 0) {
-                Message selectedMessage = allMessages.get(selectedIndex);
-                customerEmailLabel.setText(selectedMessage.email);
-                messageContentArea.setText(selectedMessage.content);
+        // List cell style based on read status
+        messagesListView.setCellFactory(lv -> new ListCell<>() {
+            @Override
+            protected void updateItem(String item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || item == null) {
+                    setText(null);
+                    setStyle("");
+                    return;
+                }
+                setText(item);
+                Message m = getMessageByCustomer(item);
+                if (m != null) {
+                    setStyle(!m.read ? "-fx-font-weight:bold; -fx-text-fill:red;" : "");
+                }
             }
+        });
+
+        messagesListView.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
+            if (newVal != null) {
+                Message m = getMessageByCustomer(newVal);
+                if (m != null) {
+                    showMessageDetails(m);
+                    markUnhandledButton.setDisable(!m.read); // only enable for handled messages
+                }
+            }
+        });
+
+        respondButton.setOnAction(e -> respondToMessage());
+        markUnhandledButton.setOnAction(e -> markAsUnhandled());
+        needResponseButton.setOnAction(e -> populateFilteredList(false));
+        handledButton.setOnAction(e -> populateFilteredList(true));
+    }
+
+    private void loadMessages() {
+        messagesData.clear();
+        File file = new File(filePath);
+
+        if (!file.exists()) {
+            try {
+                file.getParentFile().mkdirs();
+                file.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+                customerNameLabel.setText("Error creating messages file");
+                return;
+            }
+        }
+
+        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] parts = line.split("\\|");
+                if (parts.length < 5) continue;
+                messagesData.add(new Message(parts[0], parts[1], parts[2], parts[3], Boolean.parseBoolean(parts[4])));
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            customerNameLabel.setText("Error reading messages file");
+        }
+    }
+
+    private void updateCounters() {
+        long need = messagesData.stream().filter(m -> !m.read).count();
+        long handled = messagesData.stream().filter(m -> m.read).count();
+        needResponseButton.setText("Need Response (" + need + ")");
+        handledButton.setText("Handled (" + handled + ")");
+    }
+
+    private void populateFilteredList(boolean handled) {
+        showingHandled = handled;
+        messagesListView.getItems().clear();
+
+        List<Message> filtered = new ArrayList<>();
+        for (Message m : messagesData) {
+            if (handled && m.read) filtered.add(m);
+            if (!handled && !m.read) filtered.add(m);
+        }
+
+        if (handled) {
+            // Sort handled messages by response timestamp (newest first)
+            filtered.sort((m1, m2) -> getLastResponseTime(m2).compareTo(getLastResponseTime(m1)));
+        }
+
+
+        for (Message m : filtered) messagesListView.getItems().add(m.customer);
+
+        if (!messagesListView.getItems().isEmpty())
+            messagesListView.getSelectionModel().selectFirst();
+    }
+
+    private LocalDateTime getLastResponseTime(Message m) {
+        if (m.response.trim().isEmpty()) return LocalDateTime.MIN;
+        String[] lines = m.response.split("\n");
+        String lastLine = lines[lines.length - 1];
+        try {
+            String timestampStr = lastLine.substring(1, 17);
+            return LocalDateTime.parse(timestampStr, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+        } catch (Exception e) {
+            return LocalDateTime.MIN;
+        }
+    }
+
+    private Message getMessageByCustomer(String customer) {
+        for (Message m : messagesData) if (m.customer.equals(customer)) return m;
+        return null;
+    }
+
+    private void showMessageDetails(Message m) {
+        customerNameLabel.setText("Customer Name: " + m.customer);
+        emailLabel.setText(m.email);
+        messageLabel.setText(m.content);
+        responseLabel.setText(m.response);
+        responseLabel.setStyle(!m.read ? "-fx-text-fill:gray;" : "-fx-text-fill:green;");
+
+        if (!m.read) {
+            respondButton.setText("Respond");
+            respondButton.setPrefWidth(108);
+        } else {
+            respondButton.setText("Add another response");
+            respondButton.setPrefWidth(160);
+        }
+    }
+
+    private void respondToMessage() {
+        String selected = messagesListView.getSelectionModel().getSelectedItem();
+        if (selected == null) return;
+        Message m = getMessageByCustomer(selected);
+        if (m == null) return;
+
+        TextInputDialog dialog = new TextInputDialog();
+        dialog.setTitle("Respond to Message");
+        dialog.setHeaderText("Write response for " + m.customer);
+        dialog.setContentText("Response:");
+
+        Optional<String> result = dialog.showAndWait();
+        result.ifPresent(response -> {
+            if (response.trim().isEmpty()) return;
+            String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+            m.response = (m.response.trim().isEmpty() ? "" : m.response + "\n") + "[" + timestamp + "] " + response;
+            m.read = true;
+
+            responseLabel.setText(m.response);
+            responseLabel.setStyle("-fx-text-fill:green;");
+            respondButton.setText("Add another response");
+            respondButton.setPrefWidth(160);
+
+            saveMessagesToFile();
+            updateCounters();
+            populateFilteredList(showingHandled);
+            messagesListView.refresh();
         });
     }
 
-    private void loadMessagesFromFile(String filename) {
-        try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
-            String line;
-            while ((line = br.readLine()) != null) {
-                // Assuming each line format: name,email,message
-                String[] parts = line.split(",", 3);
-                if (parts.length == 3) {
-                    allMessages.add(new Message(parts[0], parts[1], parts[2]));
-                }
+    private void markAsUnhandled() {
+        String selected = messagesListView.getSelectionModel().getSelectedItem();
+        if (selected == null) return;
+        Message m = getMessageByCustomer(selected);
+        if (m == null || !m.read) return;
+
+        TextInputDialog dialog = new TextInputDialog();
+        dialog.setTitle("Mark as Unhandled");
+        dialog.setHeaderText("Provide reason for moving this message back to Need Response");
+        dialog.setContentText("Reason:");
+
+        Optional<String> result = dialog.showAndWait();
+        result.ifPresent(reason -> {
+            if (reason.trim().isEmpty()) return;
+            String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+            m.response = m.response + "\n[" + timestamp + "] Moved to Need Response for: " + reason;
+            m.read = false;
+
+            responseLabel.setText(m.response);
+            responseLabel.setStyle("-fx-text-fill:gray;");
+
+            saveMessagesToFile();
+            updateCounters();
+            populateFilteredList(showingHandled); // refresh current tab
+            messagesListView.refresh();
+        });
+    }
+
+    private void saveMessagesToFile() {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(filePath))) {
+            for (Message m : messagesData) {
+                bw.write(String.join("|", m.customer, m.email, m.content, m.response, String.valueOf(m.read)));
+                bw.newLine();
             }
         } catch (IOException e) {
             e.printStackTrace();

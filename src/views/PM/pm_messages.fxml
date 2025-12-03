@@ -1,59 +1,82 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.gluonhq.charm.glisten.control.CardPane?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane prefHeight="582.0" prefWidth="848.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane prefHeight="582.0" prefWidth="848.0"
+            xmlns="http://javafx.com/javafx/25"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="views.PM.Pm_messages">
 
-    <!-- Top Header Pane -->
+    <!-- Top Header -->
     <top>
-        <StackPane prefHeight="60.0" prefWidth="848.0" style="-fx-background-color:#3B82F6;">
-            <Label style="-fx-text-fill:white; -fx-font-size:20px; -fx-font-weight:bold;" text="Messages" />
+        <StackPane prefHeight="60.0" style="-fx-background-color:#3B82F6;">
+            <Label style="-fx-text-fill:white; -fx-font-size:20px; -fx-font-weight:bold;"
+                   text="Messages" />
         </StackPane>
     </top>
 
-    <!-- Left Sidebar: Messages list -->
+    <!-- Left Sidebar: Messages List -->
     <left>
         <VBox prefHeight="455.0" prefWidth="340.0" spacing="10" BorderPane.alignment="TOP_LEFT">
             <padding>
                 <Insets bottom="10" left="10" right="10" top="10" />
             </padding>
-            <Label prefHeight="49.0" prefWidth="148.0" style="-fx-font-size:16px; -fx-font-weight:bold;" text="Incoming Messages" />
-            <ScrollPane>
+
+            <Label style="-fx-font-size:16px; -fx-font-weight:bold;"
+                   text="Incoming Messages" />
+
+            <!-- Filter Buttons -->
+            <HBox spacing="10">
+                <Button fx:id="needResponseButton" prefWidth="150" text="Need Response (0)" />
+                <Button fx:id="handledButton" prefWidth="150" text="Handled (0)" />
+            </HBox>
+
+            <!-- Scrollable List -->
+            <ScrollPane fitToWidth="true" fitToHeight="true">
                 <content>
-                    <CardPane prefHeight="382.0" prefWidth="327.0">
-                        <Label style="-fx-padding:10;" text="Customer1" />
-                        <Label style="-fx-padding:10;" text="Customer 2" />
-                        <Label style="-fx-padding:10;" text="Customer 3" />
-                    </CardPane>
+                    <ListView fx:id="messagesListView" prefHeight="382.0" prefWidth="327.0" />
                 </content>
             </ScrollPane>
         </VBox>
     </left>
 
-    <!-- Center Content: Message Details -->
+    <!-- Center Pane: Message Details -->
     <center>
         <VBox prefWidth="508.0" spacing="10">
             <padding>
                 <Insets bottom="15" left="15" right="15" top="15" />
             </padding>
 
-            <Label style="-fx-font-size:14px; -fx-font-weight:bold;" text="Customer Name:" />
+            <Label fx:id="customerNameLabel"
+                   style="-fx-font-size:14px; -fx-font-weight:bold;"
+                   text="Customer Name:" />
 
             <Label style="-fx-font-size:14px; -fx-font-weight:bold;" text="Email:" />
+            <Label fx:id="emailLabel" style="-fx-font-size:11px; -fx-text-fill:gray;" />
 
             <Label style="-fx-font-size:14px; -fx-font-weight:bold;" text="Message:" />
-            <Label fx:id="customerEmailLabel" style="-fx-font-size:11px; -fx-text-fill:gray;" />
-            <TextArea fx:id="messageContentArea" editable="false" prefHeight="318.0" prefWidth="484.0" wrapText="true" />
+            <TextArea fx:id="messageLabel" editable="false" wrapText="true"
+                      prefHeight="318.0" prefWidth="484.0" />
 
-            <Button fx:id="respondButton" prefHeight="25.0" prefWidth="108.0" text="Respond" />
+            <Label style="-fx-font-size:14px; -fx-font-weight:bold;" text="Response:" />
+            <TextArea fx:id="responseLabel" editable="false" wrapText="true"
+                      prefHeight="100.0" prefWidth="484.0" />
+
+            <HBox spacing="10">
+                <Button fx:id="respondButton" prefHeight="25.0" prefWidth="108.0"
+                        text="Respond" />
+                <Button fx:id="markUnhandledButton" prefHeight="25.0" prefWidth="160.0"
+                        text="Mark as Unhandled" />
+            </HBox>
         </VBox>
     </center>
 
