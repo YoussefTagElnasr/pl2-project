@@ -16,4 +16,8 @@ public class AdminController {
         ArrayList<User> users = UsersServices.loadAllUsers();
         return users;
     }
+
+    public static boolean deleteUser(String email){
+        return UsersServices.deleteUser(email);
+    }
 }
