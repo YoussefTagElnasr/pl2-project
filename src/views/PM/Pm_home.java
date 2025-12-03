@@ -8,6 +8,7 @@ import javafx.scene.control.*;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.layout.HBox;
 import models.Request;
+import models.CurrentUser;
 
 import java.util.List;
 
@@ -15,6 +16,8 @@ import java.util.List;
 
 
 public class Pm_home {
+    @FXML
+    private Label nameLabel;
     @FXML
     private Button messagesButton;
     @FXML
@@ -55,6 +58,7 @@ public class Pm_home {
     private ObservableList<Request> readyList;
 
     public void initialize() {
+        //displayName();
         setupPendingColumn();
         setupReadyColumns();
         loadTables();
@@ -184,6 +188,20 @@ public class Pm_home {
     private void reloadTable() {
         pendingTable.getItems().setAll(controllers.PM_RequestsController.getRequests("pending"));
         readyTable.getItems().setAll(controllers.PM_RequestsController.getRequests("ready"));
+    }
+    private void displayName() {
+        models.CurrentUser instance = models.CurrentUser.getInstance();
+        if (instance==null) {
+            nameLabel.setText("Project Manager");
+        }
+        else {
+            String name = instance.getName();
+            if (name == null || name.isEmpty()) {
+                nameLabel.setText("Project Manager");
+            } else {
+                nameLabel.setText(name);
+            }
+        }
     }
     @FXML
     private void onMessagesClicked() {
