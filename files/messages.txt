@@ -1,22 +1,20 @@
-Charlie|charlie@example.com|Thank you for the previous support.|Thanks!|true
-Alice|alice@example.com|Hi, I need help with my order.|[2025-12-03 15:04] Test
-[2025-12-03 15:30] Test|true
-Bob|bob@example.com|Can I change my delivery address?| |false
-Charlie|charlie@example.com|Thank you for the previous support.|Thanks!|true
-Diana|diana@example.com|My product arrived damaged.| |false
-Ethan|ethan@example.com|How do I apply a discount code?| |false
-Alice|alice@example.com|Hi, I need help with my order.| |false
-Bob|bob@example.com|Can I change my delivery address?| |false
-Charlie|charlie@example.com|Thank you for the previous support.|Thanks!|true
-Diana|diana@example.com|My product arrived damaged.| |false
-Ethan|ethan@example.com|How do I apply a discount code?| |false
-Alice|alice@example.com|Hi, I need help with my order.| |false
-Bob|bob@example.com|Can I change my delivery address?| |false
-Charlie|charlie@example.com|Thank you for the previous support.|Thanks!|true
-Diana|diana@example.com|My product arrived damaged.| |false
-Ethan|ethan@example.com|How do I apply a discount code?| |false
-Alice|alice@example.com|Hi, I need help with my order.| |false
-Bob|bob@example.com|Can I change my delivery address?| |false
-Charlie|charlie@example.com|Thank you for the previous support.|Thanks!|true
-Diana|diana@example.com|My product arrived damaged.| |false
-Ethan|ethan@example.com|How do I apply a discount code?| |false
+Alice|alice@example.com|I submitted my order but haven’t received confirmation.|Pending|true
+Bob|bob@example.com|I requested a change in my delivery address.|Approved|true
+Charlie|charlie@example.com|I sent a return request for a damaged item.|Verifying|true
+Diana|diana@example.com|My product arrived broken, need a replacement.| |false
+Ethan|ethan@example.com|How can I apply a discount code to my order?| |false
+Fiona|fiona@example.com|I want to cancel my subscription for next month.| |false
+George|george@example.com|Do you ship products to Canada?| |false
+Hannah|hannah@example.com|I received the wrong item in my order.| |false
+Ian|ian@example.com|Can I get a refund for my last purchase?| |false
+Julia|julia@example.com|Please update my billing information.| |false
+Kevin|kevin@example.com|I requested a password reset but haven’t received an email.|Pending|true
+Laura|laura@example.com|Some items were missing from my order.| |false
+Mike|mike@example.com|I want to upgrade my plan to premium.| |false
+Nina|nina@example.com|How can I track my shipment online?| |false
+Oscar|oscar@example.com|My account verification is stuck on step 2.|Verifying|true
+Paula|paula@example.com|I need a copy of my invoice.| |false
+Quinn|quinn@example.com|Can I change my payment method for upcoming orders?| |false
+Robert|robert@example.com|I cannot log in to my account.| |false
+Sophia|sophia@example.com|The product I received is damaged.| |false
+Tom|tom@example.com|I submitted a coupon code but it didn’t apply.|Approved|true
