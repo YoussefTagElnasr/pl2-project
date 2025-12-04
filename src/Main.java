@@ -11,7 +11,7 @@ public class Main extends Application {
     public void start(Stage stage) {
         try {
             // Load FXML
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/PM/Pm_home.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/Login/login.fxml"));
             // The controller is automatically picked from fx:controller in FXML
             Parent root = loader.load();
 

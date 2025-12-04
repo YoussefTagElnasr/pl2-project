@@ -11,6 +11,7 @@ import java.io.IOException;
 import controllers.LoginController;
 import view_utils.Alerts;
 import view_utils.SwitchScenes;
+import models.CurrentUser;
 
 public class Login {
 
@@ -27,13 +28,32 @@ public class Login {
     private void loginButtonClick() {
         String username = usernameField.getText();
         String password = passwordField.getText();
+        String adminPath = "/views/admin/admin.fxml";
+        String pmPath = "/views/PM/Pm_home.fxml";
+        Stage stage = (Stage) usernameField.getScene().getWindow();
 
         try {
-            LoginController.handleLogin(username, password);
+            CurrentUser user = LoginController.handleLogin(username, password);
+            if (user.getRole().equals("admin")){
+                try{
+                    new SwitchScenes().changeScene(adminPath, stage);
+                } catch(IOException e){
+                    System.out.println(e.getMessage());
+                }
+
+            }
+            else if (user.getRole().equals("pm")){
+                try{
+                    new SwitchScenes().changeScene(pmPath, stage);
+                } catch(IOException e){
+                    System.out.println(e.getMessage());
+                }
+            }
         } catch (SecurityException e) {
-            Alerts.showAlert(e.getMessage() , "login failed");
+            Alerts.showErrorAlert(e.getMessage() , "login failed");
         }
     }
+
 
     @FXML
     public void goToRegister(){
