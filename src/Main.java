@@ -3,7 +3,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import views.PM.Pm_messages; // make sure this matches your package
+import views.PM.Pm_messages;
 
 public class Main extends Application {
 
@@ -11,7 +11,7 @@ public class Main extends Application {
     public void start(Stage stage) {
         try {
             // Load FXML
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/Login/login.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/PM/pm_messages.fxml"));
             // The controller is automatically picked from fx:controller in FXML
             Parent root = loader.load();
 
