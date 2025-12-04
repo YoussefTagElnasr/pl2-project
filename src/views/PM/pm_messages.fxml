@@ -11,16 +11,12 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane prefHeight="582.0" prefWidth="848.0"
-            xmlns="http://javafx.com/javafx/25"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="views.PM.Pm_messages">
+<BorderPane prefHeight="582.0" prefWidth="848.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.PM.Pm_messages">
 
     <!-- Top Header -->
     <top>
         <StackPane prefHeight="60.0" style="-fx-background-color:#3B82F6;">
-            <Label style="-fx-text-fill:white; -fx-font-size:20px; -fx-font-weight:bold;"
-                   text="Messages" />
+            <Label style="-fx-text-fill:white; -fx-font-size:20px; -fx-font-weight:bold;" text="Messages" />
         </StackPane>
     </top>
 
@@ -31,8 +27,7 @@
                 <Insets bottom="10" left="10" right="10" top="10" />
             </padding>
 
-            <Label style="-fx-font-size:16px; -fx-font-weight:bold;"
-                   text="Incoming Messages" />
+            <Label style="-fx-font-size:16px; -fx-font-weight:bold;" text="Incoming Messages" />
 
             <!-- Filter Buttons -->
             <HBox spacing="10">
@@ -41,7 +36,7 @@
             </HBox>
 
             <!-- Scrollable List -->
-            <ScrollPane fitToWidth="true" fitToHeight="true">
+            <ScrollPane fitToHeight="true" fitToWidth="true">
                 <content>
                     <ListView fx:id="messagesListView" prefHeight="382.0" prefWidth="327.0" />
                 </content>
@@ -56,26 +51,20 @@
                 <Insets bottom="15" left="15" right="15" top="15" />
             </padding>
 
-            <Label fx:id="customerNameLabel"
-                   style="-fx-font-size:14px; -fx-font-weight:bold;"
-                   text="Customer Name:" />
+            <Label fx:id="customerNameLabel" style="-fx-font-size:14px; -fx-font-weight:bold;" text="Customer Name:" />
 
             <Label style="-fx-font-size:14px; -fx-font-weight:bold;" text="Email:" />
             <Label fx:id="emailLabel" style="-fx-font-size:11px; -fx-text-fill:gray;" />
 
             <Label style="-fx-font-size:14px; -fx-font-weight:bold;" text="Message:" />
-            <TextArea fx:id="messageLabel" editable="false" wrapText="true"
-                      prefHeight="318.0" prefWidth="484.0" />
+            <TextArea fx:id="messageLabel" editable="false" prefHeight="318.0" prefWidth="484.0" wrapText="true" />
 
             <Label style="-fx-font-size:14px; -fx-font-weight:bold;" text="Response:" />
-            <TextArea fx:id="responseLabel" editable="false" wrapText="true"
-                      prefHeight="100.0" prefWidth="484.0" />
+            <TextArea fx:id="responseLabel" prefHeight="100.0" prefWidth="484.0" wrapText="true" />
 
             <HBox spacing="10">
-                <Button fx:id="respondButton" prefHeight="25.0" prefWidth="108.0"
-                        text="Respond" />
-                <Button fx:id="markUnhandledButton" prefHeight="25.0" prefWidth="160.0"
-                        text="Mark as Unhandled" />
+                <Button fx:id="respondButton" prefHeight="25.0" prefWidth="108.0" text="Respond" />
+                <Button fx:id="markUnhandledButton" prefHeight="25.0" prefWidth="160.0" text="Mark as Unhandled" />
             </HBox>
         </VBox>
     </center>

@@ -84,6 +84,9 @@ public class Pm_home {
 
 
             private final Button approveButton = new Button("Approve");
+            {
+                approveButton.setStyle("-fx-background-color: #10B981; -fx-text-fill: white; -fx-padding: 6 ;");
+            }
 
             {
                 approveButton.setOnAction(event -> {
@@ -97,7 +100,9 @@ public class Pm_home {
             }
 
             private final Button rejectButton = new Button("Reject");
-
+            {
+                rejectButton.setStyle("-fx-background-color: #EF4444; -fx-text-fill: white; -fx-padding: 6 10;");
+            }
             {
                 rejectButton.setOnAction(event -> {
                     Request rejectedRequest = getTableView().getItems().get(getIndex());
@@ -146,7 +151,9 @@ public class Pm_home {
         dateColumn2.setCellValueFactory(data->new SimpleStringProperty(data.getValue().getReadyDate()));
         actionColumn2.setCellFactory(data->new TableCell<Request, Void>() {
             private final Button FinalizeButton = new Button("Finalize");
-
+            {
+                FinalizeButton.setStyle("-fx-background-color:#009688; -fx-text-fill: white; -fx-padding: 6 20;");
+            }
             {
                 FinalizeButton.setOnAction(event -> {
                     Request finalizedRequest = getTableView().getItems().get(getIndex());
@@ -177,6 +184,7 @@ public class Pm_home {
         priceColumn2.setStyle("-fx-alignment: CENTER;");
         dateColumn2.setStyle("-fx-alignment: CENTER;");
         actionColumn2.setStyle("-fx-alignment: CENTER;");
+
     }
     private void loadTables() {
         List<Request> pending = PM_RequestsController.getRequests("pending");
@@ -208,8 +216,8 @@ public class Pm_home {
     }
     @FXML
     private void onMessagesClicked() {
-        String filePath = "views/pm_messages.fxml";
-        Stage stage = (Stage) messagesButton.getScene().getWindow();
+        String filePath = "/views/PM/pm_messages.fxml";
+        Stage stage = (Stage) pendingTable.getScene().getWindow();
         try{
             new SwitchScenes().changeScene(filePath, stage);
         } catch(IOException e){
