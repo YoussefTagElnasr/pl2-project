@@ -43,9 +43,9 @@ public class RequestServices {
         }
     return requiredRequests;
 
-
-
-    } public static List<Request> processRequest(Request targetRequest,String newStatus) {
+    } 
+    
+    public static List<Request> processRequest(Request targetRequest,String newStatus) {
         List<Request> updatedRequests = new ArrayList<>();
         String filepath = "files/requests.txt";
 
