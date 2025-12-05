@@ -1,6 +1,8 @@
 package views.PM;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.*;
 import java.io.*;
 import java.time.LocalDateTime;
@@ -8,41 +10,29 @@ import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class Pm_messages {
-
     @FXML
     private ListView<String> messagesListView;
-
     @FXML
     private Label customerNameLabel;
-
     @FXML
     private Label emailLabel;
-
     @FXML
     private TextArea messageLabel;
-
     @FXML
     private TextArea responseLabel;
-
     @FXML
     private Button respondButton;
-
     @FXML
     private Button needResponseButton;
-
     @FXML
     private Button handledButton;
-
     @FXML
     private Button markUnhandledButton;
-
+    @FXML
+    private Button backButton;
     private List<Message> messagesData = new ArrayList<>();
-
     private final String filePath = "files/messages.txt";
-
-    // Track current tab: false = Need Response, true = Handled
     private boolean showingHandled = false;
-
     private static class Message {
         String customer;
         String email;
@@ -62,9 +52,7 @@ public class Pm_messages {
     public void initialize() {
         loadMessages();
         updateCounters();
-        populateFilteredList(false); // load unhandled by default
-
-        // List cell style based on read status
+        populateFilteredList(false);
         messagesListView.setCellFactory(lv -> new ListCell<>() {
             @Override
             protected void updateItem(String item, boolean empty) {
@@ -87,15 +75,15 @@ public class Pm_messages {
                 Message m = getMessageByCustomer(newVal);
                 if (m != null) {
                     showMessageDetails(m);
-                    markUnhandledButton.setDisable(!m.read); // only enable for handled messages
+                    markUnhandledButton.setDisable(!m.read);
                 }
             }
         });
-
         respondButton.setOnAction(e -> respondToMessage());
         markUnhandledButton.setOnAction(e -> markAsUnhandled());
         needResponseButton.setOnAction(e -> populateFilteredList(false));
         handledButton.setOnAction(e -> populateFilteredList(true));
+        backButton.setOnAction(e -> goHome());
     }
 
     private void loadMessages() {
@@ -112,7 +100,6 @@ public class Pm_messages {
                 return;
             }
         }
-
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
             String line;
             while ((line = br.readLine()) != null) {
@@ -142,17 +129,15 @@ public class Pm_messages {
             if (handled && m.read) filtered.add(m);
             if (!handled && !m.read) filtered.add(m);
         }
-
         if (handled) {
-            // Sort handled messages by response timestamp (newest first)
             filtered.sort((m1, m2) -> getLastResponseTime(m2).compareTo(getLastResponseTime(m1)));
         }
-
-
-        for (Message m : filtered) messagesListView.getItems().add(m.customer);
-
-        if (!messagesListView.getItems().isEmpty())
+        for (Message m : filtered) {
+            messagesListView.getItems().add(m.customer);
+        }
+        if (!messagesListView.getItems().isEmpty()) {
             messagesListView.getSelectionModel().selectFirst();
+        }
     }
 
     private LocalDateTime getLastResponseTime(Message m) {
@@ -168,7 +153,8 @@ public class Pm_messages {
     }
 
     private Message getMessageByCustomer(String customer) {
-        for (Message m : messagesData) if (m.customer.equals(customer)) return m;
+        for (Message m : messagesData)
+            if (m.customer.equals(customer)) return m;
         return null;
     }
 
@@ -193,24 +179,22 @@ public class Pm_messages {
         if (selected == null) return;
         Message m = getMessageByCustomer(selected);
         if (m == null) return;
-
         TextInputDialog dialog = new TextInputDialog();
         dialog.setTitle("Respond to Message");
         dialog.setHeaderText("Write response for " + m.customer);
         dialog.setContentText("Response:");
-
         Optional<String> result = dialog.showAndWait();
         result.ifPresent(response -> {
             if (response.trim().isEmpty()) return;
-            String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
-            m.response = (m.response.trim().isEmpty() ? "" : m.response + "\n") + "[" + timestamp + "] " + response;
-            m.read = true;
 
+            String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+            m.response = (m.response.trim().isEmpty() ? "" : m.response + "\n")
+                    + "[" + timestamp + "] " + response;
+            m.read = true;
             responseLabel.setText(m.response);
             responseLabel.setStyle("-fx-text-fill:green;");
             respondButton.setText("Add another response");
             respondButton.setPrefWidth(160);
-
             saveMessagesToFile();
             updateCounters();
             populateFilteredList(showingHandled);
@@ -221,6 +205,7 @@ public class Pm_messages {
     private void markAsUnhandled() {
         String selected = messagesListView.getSelectionModel().getSelectedItem();
         if (selected == null) return;
+
         Message m = getMessageByCustomer(selected);
         if (m == null || !m.read) return;
 
@@ -232,16 +217,15 @@ public class Pm_messages {
         Optional<String> result = dialog.showAndWait();
         result.ifPresent(reason -> {
             if (reason.trim().isEmpty()) return;
+
             String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
             m.response = m.response + "\n[" + timestamp + "] Moved to Need Response for: " + reason;
             m.read = false;
-
             responseLabel.setText(m.response);
             responseLabel.setStyle("-fx-text-fill:gray;");
-
             saveMessagesToFile();
             updateCounters();
-            populateFilteredList(showingHandled); // refresh current tab
+            populateFilteredList(showingHandled);
             messagesListView.refresh();
         });
     }
@@ -249,11 +233,31 @@ public class Pm_messages {
     private void saveMessagesToFile() {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(filePath))) {
             for (Message m : messagesData) {
-                bw.write(String.join("|", m.customer, m.email, m.content, m.response, String.valueOf(m.read)));
+                bw.write(String.join("|",
+                        m.customer,
+                        m.email,
+                        m.content,
+                        m.response,
+                        String.valueOf(m.read)
+                ));
                 bw.newLine();
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+    private void goHome() {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/views/PM/Pm_home.fxml"));
+            javafx.stage.Stage stage = (javafx.stage.Stage) backButton.getScene().getWindow();
+            double width = stage.getWidth();
+            double height = stage.getHeight();
+            javafx.scene.Scene newScene = new javafx.scene.Scene(root, width, height);
+            stage.setScene(newScene);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
+
