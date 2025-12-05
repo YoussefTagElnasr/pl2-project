@@ -26,7 +26,7 @@
                         <Insets bottom="10.0" top="10.0" />
                      </VBox.margin>
                   </Label>
-                  <TableView fx:id="pendingTable" VBox.vgrow="ALWAYS" style="-fx-focus-color: transparent;-fx-faint-focus-color: transparent;-fx-effect: none;">
+                  <TableView fx:id="pendingTable" style="-fx-focus-color: transparent;-fx-faint-focus-color: transparent;-fx-effect: none;" VBox.vgrow="ALWAYS">
                      <columns>
                         <TableColumn fx:id="customerColumn1" prefWidth="75.0" text="Customer" />
                         <TableColumn fx:id="emailColumn1" prefWidth="75.0" text="Email" />
@@ -51,7 +51,7 @@
                         <Insets bottom="10.0" top="10.0" />
                      </VBox.margin>
                   </Label>
-                  <TableView fx:id="readyTable" VBox.vgrow="ALWAYS" style="-fx-focus-color: transparent;-fx-faint-focus-color: transparent;-fx-effect: none;">
+                  <TableView fx:id="readyTable" style="-fx-focus-color: transparent;-fx-faint-focus-color: transparent;-fx-effect: none;" VBox.vgrow="ALWAYS">
                      <columns>
                         <TableColumn fx:id="customerColumn2" prefWidth="75.0" text="Customer" />
                         <TableColumn fx:id="emailColumn2" prefWidth="75.0" text="Email" />
@@ -82,7 +82,7 @@
                         <Insets left="10.0" />
                      </HBox.margin>
                   </Label>
-                  <Label text="Project Manager">
+                  <Label fx:id="nameLabel" text="Project Manager">
                      <font>
                         <Font name="System Bold" size="30.0" />
                      </font>
@@ -91,12 +91,12 @@
                      </padding>
                   </Label>
                   <Region prefHeight="100.0" prefWidth="0.0" HBox.hgrow="ALWAYS" />
-                  <Button id="messagesbutton" fx:id="reloadButton" mnemonicParsing="false" onAction="#onReloadClicked" text="Reload" style="-fx-background-color: #000000;-fx-text-fill: #FFFFFF">
+                  <Button id="messagesbutton" fx:id="reloadButton" mnemonicParsing="false" onAction="#onReloadClicked" style="-fx-background-color: #000000;-fx-text-fill: #FFFFFF" text="Reload">
                      <HBox.margin>
                         <Insets right="20.0" top="40.0" />
                      </HBox.margin>
                   </Button>
-                  <Button id="messagesbutton" fx:id="messagesButton1" mnemonicParsing="false" onAction="#onMessagesClicked" text="Messages" style="-fx-background-color: #000000;-fx-text-fill: #FFFFFF">
+                  <Button id="messagesbutton" fx:id="messagesButton1" mnemonicParsing="false" onAction="#onMessagesClicked" style="-fx-background-color: #000000;-fx-text-fill: #FFFFFF" text="Messages">
                      <HBox.margin>
                         <Insets right="15.0" top="40.0" />
                      </HBox.margin>

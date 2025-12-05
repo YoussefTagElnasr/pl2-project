@@ -1,4 +1,5 @@
 package views.PM;
+import controllers.LoginController;
 import controllers.PM_RequestsController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -9,6 +10,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.layout.HBox;
 import models.Request;
 import models.CurrentUser;
+import view_utils.Alerts;
 import view_utils.SwitchScenes;
 import javafx.stage.Stage;
 
@@ -67,6 +69,7 @@ public class Pm_home {
         loadTables();
         pendingTable.setStyle("-fx-focus-color: transparent;-fx-faint-focus-color: transparent;");
         readyTable.setStyle("-fx-focus-color: transparent;-fx-faint-focus-color: transparent;");
+        nameLabel.setText(CurrentUser.getInstance().getName());
 
     }
     private  void reloadTables(){
