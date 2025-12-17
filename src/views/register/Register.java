@@ -29,7 +29,7 @@ public class Register {
     @FXML
     private PasswordField confirmPasswordField;
 
-    @FXML 
+    @FXML
     private Button registerButton;
 
     @FXML
@@ -43,11 +43,11 @@ public class Register {
             Alerts.showErrorAlert( "password does not match" ,"password does not match");
             return;
         }
-        
+
         try{
             Customer user = new Customer(email, password, name);
             RegisterController.handleRegister(user);
-            
+
         } catch (IllegalArgumentException e){
             Alerts.showErrorAlert(e.getMessage() , "error");
         }

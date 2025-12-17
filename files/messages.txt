@@ -1,1 +1,12 @@
-customer|customer_email|message|response
+Diana|diana@example.com|My product arrived broken, need a replacement.|[2025-12-03 16:14] Approved|true
+Ethan|ethan@example.com|How can I apply a discount code to my order?|[2025-12-03 16:15] Sent an e-mail for instructions|true
+George|george@example.com|Do you ship products to Canada?|[2025-12-04 14:36] Verifiying|true
+Julia|julia@example.com|Please update my billing information.| |false
+Laura|laura@example.com|Some items were missing from my order.| |false
+Mike|mike@example.com|I want to upgrade my plan to premium.| |false
+Nina|nina@example.com|How can I track my shipment online?| |false
+Paula|paula@example.com|I need a copy of my invoice.| |false
+Quinn|quinn@example.com|Can I change my payment method for upcoming orders?| |false
+Robert|robert@example.com|I cannot log in to my account.| |false
+Sophia|sophia@example.com|The product I received is damaged.| |false
+Tom|tom@example.com|I submitted a coupon code but it didn’t apply.|Approved|true

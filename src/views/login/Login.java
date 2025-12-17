@@ -13,6 +13,7 @@ import view_utils.Alerts;
 import view_utils.SwitchScenes;
 import models.CurrentUser;
 
+
 public class Login {
 
     @FXML
@@ -29,6 +30,7 @@ public class Login {
         String username = usernameField.getText();
         String password = passwordField.getText();
         String adminPath = "/views/admin/admin.fxml";
+        String pmPath = "/views/PM/Pm_home.fxml";
         Stage stage = (Stage) usernameField.getScene().getWindow();
 
         try {
@@ -39,11 +41,20 @@ public class Login {
                 } catch(IOException e){
                     System.out.println(e.getMessage());
                 }
+
+            }
+            else if (user.getRole().equals("pm")){
+                try{
+                    new SwitchScenes().changeScene(pmPath, stage);
+                } catch(IOException e){
+                    System.out.println(e.getMessage());
+                }
             }
         } catch (SecurityException e) {
             Alerts.showErrorAlert(e.getMessage() , "login failed");
         }
     }
+
 
     @FXML
     public void goToRegister(){
