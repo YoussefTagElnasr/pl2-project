@@ -18,10 +18,12 @@
 
         <TableView fx:id="tableRequests" VBox.vgrow="ALWAYS">
             <columns>
-                <TableColumn fx:id="colRequestID" prefWidth="100" text="Request ID" />
                 <TableColumn fx:id="colCustomer" prefWidth="150" text="Customer" />
-                <TableColumn fx:id="colDescription" prefWidth="250" text="Description" />
+                <TableColumn fx:id="colCustomerEmail" prefWidth="200" text="Customer Email" />
+                <TableColumn fx:id="colDetails" prefWidth="250" text="Details" />
                 <TableColumn fx:id="colStatus" prefWidth="100" text="Status" />
+                <TableColumn fx:id="colPrice" prefWidth="100" text="Price" />
+                <TableColumn fx:id="colReadyDate" prefWidth="150" text="Ready Date" />
             </columns>
         </TableView>
 
