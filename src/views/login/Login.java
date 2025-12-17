@@ -41,7 +41,6 @@ public class Login {
                 } catch(IOException e){
                     System.out.println(e.getMessage());
                 }
-
             }
             else if (user.getRole().equals("pm")){
                 try{
