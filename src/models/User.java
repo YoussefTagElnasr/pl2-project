@@ -1,15 +1,16 @@
 package models;
 
-public class Customer {
+public class User {
     private String email;
     private String password;
     private String name;
-    private String role = "customer";
+    private String role;
 
-    public Customer(String email, String password, String name) {
+    public User(String email, String password, String name , String role) {
         this.email = email;
         this.password = password;
         this.name = name;
+        this.role = role;
     }
 
     public String getEmail() {
@@ -26,9 +27,5 @@ public class Customer {
 
     public String getRole() {
         return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
     }
 }

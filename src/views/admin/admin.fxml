@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.Button?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.scene.control.ChoiceBox?>
+
+<AnchorPane prefHeight="575.0" prefWidth="796.0"
+            xmlns="http://javafx.com/javafx/25"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="views.admin.Admin">
+
+    <children>
+
+        <AnchorPane prefHeight="60.0" style="-fx-background-color: #3B82F6;"
+                    AnchorPane.topAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+
+            <children>
+                <HBox spacing="20" alignment="CENTER" AnchorPane.leftAnchor="0.0"
+                      AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0">
+
+                    <Label text="welcome" style="-fx-text-fill: white;">
+                        <font><Font size="27.0"/></font>
+                    </Label>
+
+                    <Label fx:id="adminName" text="admin" style="-fx-text-fill: white;">
+                        <font><Font size="27.0"/></font>
+                    </Label>
+
+                </HBox>
+            </children>
+        </AnchorPane>
+
+        <VBox spacing="10" AnchorPane.topAnchor="80.0"
+              AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0"
+              AnchorPane.bottomAnchor="20.0">
+
+            <TableView fx:id="requstsTable" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="customerColumn" text="customer" prefWidth="100"/>
+                    <TableColumn fx:id="emailColumn" text="email" prefWidth="100"/>
+                    <TableColumn fx:id="detailColumn" text="details" prefWidth="100"/>
+                    <TableColumn fx:id="statusColumn" text="status" prefWidth="100"/>
+                    <TableColumn fx:id="priceColumn" text="price" prefWidth="100"/>
+                    <TableColumn fx:id="readyDateColumn" text="ready_date" prefWidth="100"/>
+                </columns>
+            </TableView>
+
+            <TableView fx:id="usersTable" VBox.vgrow="ALWAYS">
+               <columns>
+                <TableColumn fx:id="nameColumn" text="name" prefWidth="150"/>
+                <TableColumn fx:id="userEmailColumn" text="email" prefWidth="150"/>
+                <TableColumn fx:id="passwordColumn" text="password" prefWidth="150"/>
+                <TableColumn fx:id="roleColumn" text="role" prefWidth="150"/>
+            </columns>
+            </TableView>
+
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <TextField fx:id="nameField" promptText="Name" prefWidth="120"/>
+                <TextField fx:id="emailField" promptText="Email" prefWidth="150"/>
+                <TextField fx:id="passwordField" promptText="Password" prefWidth="150"/>
+                <ChoiceBox fx:id="myChoiceBox" prefWidth="150.0" />
+                <Button fx:id="addButton" text="Add"
+                        style="-fx-background-color: #10B981; -fx-text-fill: white; -fx-padding: 6 20;"/>
+                <Button fx:id="deleteButton" text="Delete Selected"
+                        style="-fx-background-color: #EF4444; -fx-text-fill: white; -fx-padding: 6 20;"/>
+            </HBox>
+
+        </VBox>
+
+    </children>
+
+</AnchorPane>
