@@ -30,7 +30,6 @@ public class RequestServices {
                 String[] parts = line.split("\\|");
 
                 if (parts.length != 6) {
-                    System.out.println("Skipping invalid line: " + line);
                     continue;
                 }
 
