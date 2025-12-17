@@ -74,12 +74,19 @@ public class ServiceProvider {
 
         String price = txtPrice.getText();
         LocalDate date = dateReady.getValue();
+        String email = selected.getEmail();
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         String dateStr = date.format(formatter);
 
         selected.setPrice(price);
         selected.setReadyDate(dateStr);
+
+        ServiceProviderController.UpdateRequsetPrice(price , dateStr , email);
+        ServiceProviderController.updateStatus(selected);
+        
+        List<Request> requestsList = ServiceProviderController.loadSpRequests();
+        tableRequests.setItems(FXCollections.observableArrayList(requestsList));
 
         tableRequests.refresh();
 

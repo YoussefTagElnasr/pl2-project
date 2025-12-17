@@ -4,6 +4,8 @@ import models.AdminRequest;
 import models.Request;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -138,5 +140,42 @@ public class RequestServices {
         }catch (IOException e) {
             System.out.println("Error writing requests file :"+e.getMessage());
         }
+    }
+
+    public static void updateRequest(String email, String price, String readyDate) throws IOException {
+        File file = new File(FILE_PATH);
+        if (!file.exists()) {
+            System.out.println("File not found");
+            return;
+        }
+
+        List<String> lines = Files.readAllLines(file.toPath());
+        List<String> updatedLines = new ArrayList<>();
+
+        updatedLines.add(lines.get(0));
+
+        boolean found = false;
+
+        for (int i = 1; i < lines.size(); i++) {
+            String line = lines.get(i);
+            String[] parts = line.split("\\|" , -1);
+
+            if (parts[1].equalsIgnoreCase(email)) {
+                parts[4] = price;     
+                parts[5] = readyDate;  
+                found = true;
+            }
+
+            updatedLines.add(String.join("|", parts));
+        }
+
+        if (!found) {
+            System.out.println("No request found for email: " + email);
+            return;
+        }
+
+        Files.write(file.toPath(), updatedLines, StandardOpenOption.WRITE, StandardOpenOption.TRUNCATE_EXISTING);
+
+        System.out.println("Request updated successfully!");
     }
 }
