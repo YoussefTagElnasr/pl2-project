@@ -68,7 +68,6 @@ public class RequestServices {
                 if (parts.length != 6) {
                     continue;
                 }
-                //Robert King|king.robert@mail.com|Invoice generator UI|approved||
                 String name = parts[0];
                 String email = parts[1];
                 String details = parts[2];

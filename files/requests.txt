@@ -29,35 +29,3 @@ Karl Johnson|karl.j@live.com|Healthcare dashboard design|pending||
 David Wilson|davidw@live.com|Company profile brochure|ready|900|2024-10-29
 Omar Nawaf|omar.nawaf@mail.com|School mobile app mockup|pending||
 Aisha Mohamed|aisha.mohamed@gmail.com|Salon website redesign|pending||
-
-
-Emily Johnson|emj@outlook.com|Website redesign proposal|pending||
-Michael Brown|mbrown@yahoo.com|Business card template|ready|300|2024-10-10
-Ahmed Farouk|ahmed.fk@gmail.com|Mobile app landing page|pending||
-Julia Smith|jsmith77@mail.com|Website wireframes|ready|950|2024-09-30
-Sophia Lee|sophia.lee@mail.com|UI/UX for e-commerce app|pending||
-Fatima Ali|fatima.ali@hotmail.com|Travel agency website|ready|1450|2024-10-22
-Adam Scott|adams@techmail.com|Poster for event campaign|pending||
-James White|jamesw@mail.com|Business landing page|ready|980|2024-10-25
-Olivia Garcia|oliv.garcia@gmail.com|Restaurant menu design|pending||
-Noah Miller|noahm@yahoo.com|School website redesign|ready|1300|2024-10-30
-Sarah Moore|smoore@gmail.com|Resume and portfolio design|pending||
-George Brown|georgeb@mail.com|Online course platform UI|ready|1600|2024-11-03
-Emily Davis|emda@gmail.com|Flyer design for charity|pending||
-Mona Khaled|mona.kh@mail.com|University project brochure|ready|400|2024-10-19
-Chris Evans|cevans@mail.com|Dashboard UI concept|pending||
-Emily Adams|emadams@mail.com|Wedding invitation cards|ready|350|2024-10-21
-Ashley Thompson|ashth@outlook.com|Mobile app branding|pending||
-John Carter|john.carter@email.com|Logo design for startup|ready|850|2024-10-22
-Daniel Clark|daniel.c@gmail.com|Logo animation|pending||
-Harry Styles|harry.st@outlook.com|Online shop UI concept|pending||
-Isabella Rivera|isa@mail.com|Custom resume website|pending||
-Alice Moore|alice@live.com|Fitness app design|pending||
-Jack Martinez|jack.m@gmail.com|Document management UI|pending||
-Robert King|king.robert@mail.com|Invoice generator UI|pending||
-Amina Hassan|aminah@gmail.com|Social media kit|pending||
-Layla Hussein|layla.hussein@gmail.com|Photography portfolio site|pending||
-Karl Johnson|karl.j@live.com|Healthcare dashboard design|pending||
-David Wilson|davidw@live.com|Company profile brochure|ready|900|2024-10-29
-Omar Nawaf|omar.nawaf@mail.com|School mobile app mockup|pending||
-Aisha Mohamed|aisha.mohamed@gmail.com|Salon website redesign|sent||
