@@ -28,4 +28,4 @@ Layla Hussein|layla.hussein@gmail.com|Photography portfolio site|pending||
 Karl Johnson|karl.j@live.com|Healthcare dashboard design|pending||
 David Wilson|davidw@live.com|Company profile brochure|ready|900|2024-10-29
 Omar Nawaf|omar.nawaf@mail.com|School mobile app mockup|pending||
-Aisha Mohamed|aisha.mohamed@gmail.com|Salon website redesign|pending||
+Aisha Mohamed|aisha.mohamed@gmail.com|Salon website redesign|sent||
