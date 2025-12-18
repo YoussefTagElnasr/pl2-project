@@ -8,7 +8,7 @@ import services.RequestServices;
 
 public class ServiceProviderController {
     public static List<Request> loadSpRequests(){
-        List<Request> requests = RequestServices.getRequests("sent");
+        List<Request> requests = RequestServices.getRequests("approved");
         return requests;
     }
 
