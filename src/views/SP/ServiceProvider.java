@@ -1,7 +1,6 @@
 package views.SP;
 
 import javafx.fxml.FXML;
-import models.AdminRequest;
 import models.Request;
 import view_utils.Alerts;
 
