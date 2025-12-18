@@ -2,9 +2,9 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.geometry.Rectangle2D?>
-<?import javafx.scene.control.Accordion?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -50,15 +50,15 @@
                               <Insets top="30.0" />
                            </HBox.margin></Label>
                         <Region minWidth="1.0" prefHeight="200.0" prefWidth="1.0" HBox.hgrow="ALWAYS" />
-                        <Button fx:id="dashBtn" minWidth="75.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="80.0" text="Dashboard">
+                        <Button fx:id="dashBtn" minWidth="75.0" mnemonicParsing="false" onAction="#onDashClicked" prefHeight="26.0" prefWidth="80.0" text="Dashboard">
                            <HBox.margin>
                               <Insets right="10.0" top="20.0" />
                            </HBox.margin></Button>
-                        <Button fx:id="contactBtn" minWidth="75.0" mnemonicParsing="false" text="Contact Us">
+                        <Button fx:id="contactBtn" minWidth="75.0" mnemonicParsing="false" onAction="#onContactClicked" text="Contact Us">
                            <HBox.margin>
                               <Insets right="10.0" top="20.0" />
                            </HBox.margin></Button>
-                        <Button fx:id="soutBtn" layoutX="135.0" layoutY="10.0" minWidth="62.0" mnemonicParsing="false" text="Sign Out">
+                        <Button fx:id="soutBtn" layoutX="135.0" layoutY="10.0" minWidth="62.0" mnemonicParsing="false" onAction="#onSignOutClicked" text="Sign Out">
                            <HBox.margin>
                               <Insets right="10.0" top="20.0" />
                            </HBox.margin></Button>
@@ -70,135 +70,159 @@
          <center>
             <AnchorPane prefHeight="246.0" prefWidth="602.0" BorderPane.alignment="CENTER">
                <children>
-                  <Accordion layoutX="234.0" layoutY="47.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="0.0">
-                    <panes>
-                      <TitledPane animated="false" text="Chase Atlantic Concert">
-                           <content>
-                              <HBox prefHeight="100.0" prefWidth="200.0">
+                  <ScrollPane fitToWidth="true" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <content>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                           <children>
+                              <VBox maxWidth="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
-                                    <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
-                                    <VBox minWidth="250.0" prefHeight="228.0" prefWidth="263.0">
-                                       <children>
-                                          <Label text="Event Description : ">
-                                             <font>
-                                                <Font name="System Bold" size="12.0" />
-                                             </font></Label>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Tune in for a night you won’t forget.Chase Atlantic delivers a high-energy live performance with immersive lighting, deep bass, and an atmosphere that pulls the crowd in from the first track." wrappingWidth="250.0" VBox.vgrow="NEVER" />
-                                          <Label text="Event Location :">
-                                             <font>
-                                                <Font name="System Bold" size="12.0" />
-                                             </font>
-                                             <VBox.margin>
-                                                <Insets top="20.0" />
-                                             </VBox.margin></Label>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Mercedes-Benz Arena – Berlin" />
-                                          <Label text="Date :">
-                                             <padding>
-                                                <Insets top="20.0" />
-                                             </padding>
-                                             <font>
-                                                <Font name="System Bold" size="12.0" />
-                                             </font></Label>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="15 February 2026" />
-                                       </children>
-                                    </VBox>
-                                    <Region minWidth="10.0" prefHeight="200.0" prefWidth="10.0" HBox.hgrow="ALWAYS" />
-                                    <Button fx:id="event1Btn" minWidth="50.0" mnemonicParsing="false" prefWidth="90.0" text="Book Ticket">
-                                       <HBox.margin>
-                                          <Insets right="30.0" top="90.0" />
-                                       </HBox.margin></Button>
+                                    <TitledPane expanded="false" maxWidth="1.7976931348623157E308" text="Chase Atlantic Concert">
+                                       <content>
+                                          <HBox prefHeight="100.0" prefWidth="200.0">
+                                             <children>
+                                                <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+                                                <VBox minWidth="250.0" prefHeight="228.0" prefWidth="263.0">
+                                                   <children>
+                                                      <Label text="Event Description : ">
+                                                         <font>
+                                                            <Font name="System Bold" size="12.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Tune in for a night you won’t forget.Chase Atlantic delivers a high-energy live performance with immersive lighting, deep bass, and an atmosphere that pulls the crowd in from the first track." wrappingWidth="250.0" VBox.vgrow="NEVER" />
+                                                      <Label text="Event Location :">
+                                                         <font>
+                                                            <Font name="System Bold" size="12.0" />
+                                                         </font>
+                                                         <VBox.margin>
+                                                            <Insets top="20.0" />
+                                                         </VBox.margin>
+                                                      </Label>
+                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Mercedes-Benz Arena – Berlin" />
+                                                      <Label text="Date :">
+                                                         <padding>
+                                                            <Insets top="20.0" />
+                                                         </padding>
+                                                         <font>
+                                                            <Font name="System Bold" size="12.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="15 February 2026" />
+                                                   </children>
+                                                </VBox>
+                                                <Region minWidth="10.0" prefHeight="200.0" prefWidth="10.0" HBox.hgrow="ALWAYS" />
+                                                <Button fx:id="event1Btn1" minWidth="50.0" mnemonicParsing="false" onAction="#onEvent1Clicked" prefWidth="90.0" text="Book Ticket">
+                                                   <HBox.margin>
+                                                      <Insets right="30.0" top="90.0" />
+                                                   </HBox.margin>
+                                                </Button>
+                                             </children>
+                                          </HBox>
+                                       </content>
+                                       <VBox.margin>
+                                          <Insets left="20.0" right="20.0" top="20.0" />
+                                       </VBox.margin>
+                                    </TitledPane>
+                                    <TitledPane expanded="false" text="EMINƎM Concert">
+                                       <content>
+                                          <HBox prefHeight="100.0" prefWidth="200.0">
+                                             <children>
+                                                <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+                                                <VBox minWidth="250.0" prefHeight="228.0" prefWidth="263.0">
+                                                   <children>
+                                                      <Label text="Event Description : ">
+                                                         <font>
+                                                            <Font name="System Bold" size="12.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Tune in tonight for a high-impact performance from one of hip-hop’s greatest. Eminem delivers a high-intensity live show with raw energy, sharp lyricism, and a crowd locked in from the first bar." wrappingWidth="250.0" VBox.vgrow="NEVER" />
+                                                      <Label text="Event Location :">
+                                                         <font>
+                                                            <Font name="System Bold" size="12.0" />
+                                                         </font>
+                                                         <VBox.margin>
+                                                            <Insets top="20.0" />
+                                                         </VBox.margin>
+                                                      </Label>
+                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Madison Square Garden – New York" />
+                                                      <Label text="Date :">
+                                                         <padding>
+                                                            <Insets top="20.0" />
+                                                         </padding>
+                                                         <font>
+                                                            <Font name="System Bold" size="12.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="21 March 2026" />
+                                                   </children>
+                                                </VBox>
+                                                <Region minWidth="10.0" prefHeight="200.0" prefWidth="10.0" HBox.hgrow="ALWAYS" />
+                                                <Button fx:id="event2Btn1" minWidth="50.0" mnemonicParsing="false" onAction="#onEvent2Clicked" prefWidth="90.0" text="Book Ticket">
+                                                   <HBox.margin>
+                                                      <Insets right="30.0" top="90.0" />
+                                                   </HBox.margin>
+                                                </Button>
+                                             </children>
+                                          </HBox>
+                                       </content>
+                                       <VBox.margin>
+                                          <Insets left="20.0" />
+                                       </VBox.margin>
+                                       <padding>
+                                          <Insets right="20.0" />
+                                       </padding>
+                                    </TitledPane>
+                                    <TitledPane expanded="false" text="El Classico ">
+                                       <content>
+                                          <HBox prefHeight="100.0" prefWidth="200.0">
+                                             <children>
+                                                <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+                                                <VBox minWidth="250.0" prefHeight="228.0" prefWidth="263.0">
+                                                   <children>
+                                                      <Label text="Event Description : ">
+                                                         <font>
+                                                            <Font name="System Bold" size="12.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Tune in tonight for football at its highest level. El Clásico delivers an intense, world-class match filled with rivalry, passion, and moments that define the season." wrappingWidth="250.0" VBox.vgrow="NEVER" />
+                                                      <Label text="Event Location :">
+                                                         <font>
+                                                            <Font name="System Bold" size="12.0" />
+                                                         </font>
+                                                         <VBox.margin>
+                                                            <Insets top="20.0" />
+                                                         </VBox.margin>
+                                                      </Label>
+                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Spotify Camp nou Stadium - Barcelona" />
+                                                      <Label text="Date :">
+                                                         <padding>
+                                                            <Insets top="20.0" />
+                                                         </padding>
+                                                         <font>
+                                                            <Font name="System Bold" size="12.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="3 April 2026" />
+                                                   </children>
+                                                </VBox>
+                                                <Region minWidth="10.0" prefHeight="200.0" prefWidth="10.0" HBox.hgrow="ALWAYS" />
+                                                <Button fx:id="event3Btn1" minWidth="50.0" mnemonicParsing="false" onAction="#onEvent3Clicked" prefWidth="90.0" text="Book Ticket">
+                                                   <HBox.margin>
+                                                      <Insets right="30.0" top="90.0" />
+                                                   </HBox.margin>
+                                                </Button>
+                                             </children>
+                                          </HBox>
+                                       </content>
+                                       <VBox.margin>
+                                          <Insets left="20.0" right="20.0" />
+                                       </VBox.margin>
+                                    </TitledPane>
                                  </children>
-                              </HBox>
-                           </content>
-                        </TitledPane>
-                        <TitledPane animated="false" layoutX="10.0" layoutY="10.0" text="EMINƎM Concert">
-                           <content>
-                              <HBox prefHeight="100.0" prefWidth="200.0">
-                                 <children>
-                                    <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
-                                    <VBox minWidth="250.0" prefHeight="228.0" prefWidth="263.0">
-                                       <children>
-                                          <Label text="Event Description : ">
-                                             <font>
-                                                <Font name="System Bold" size="12.0" />
-                                             </font>
-                                          </Label>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Tune in tonight for a high-impact performance from one of hip-hop’s greatest. Eminem delivers a high-intensity live show with raw energy, sharp lyricism, and a crowd locked in from the first bar." wrappingWidth="250.0" VBox.vgrow="NEVER" />
-                                          <Label text="Event Location :">
-                                             <font>
-                                                <Font name="System Bold" size="12.0" />
-                                             </font>
-                                             <VBox.margin>
-                                                <Insets top="20.0" />
-                                             </VBox.margin>
-                                          </Label>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Madison Square Garden – New York" />
-                                          <Label text="Date :">
-                                             <padding>
-                                                <Insets top="20.0" />
-                                             </padding>
-                                             <font>
-                                                <Font name="System Bold" size="12.0" />
-                                             </font>
-                                          </Label>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="21 March 2026" />
-                                       </children>
-                                    </VBox>
-                                    <Region minWidth="10.0" prefHeight="200.0" prefWidth="10.0" HBox.hgrow="ALWAYS" />
-                                    <Button fx:id="event2Btn" minWidth="50.0" mnemonicParsing="false" prefWidth="90.0" text="Book Ticket">
-                                       <HBox.margin>
-                                          <Insets right="30.0" top="90.0" />
-                                       </HBox.margin>
-                                    </Button>
-                                 </children>
-                              </HBox>
-                           </content>
-                        </TitledPane>
-                        <TitledPane animated="false" layoutX="10.0" layoutY="10.0" text="El Classico ">
-                           <content>
-                              <HBox prefHeight="100.0" prefWidth="200.0">
-                                 <children>
-                                    <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
-                                    <VBox minWidth="250.0" prefHeight="228.0" prefWidth="263.0">
-                                       <children>
-                                          <Label text="Event Description : ">
-                                             <font>
-                                                <Font name="System Bold" size="12.0" />
-                                             </font>
-                                          </Label>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Tune in tonight for football at its highest level. El Clásico delivers an intense, world-class match filled with rivalry, passion, and moments that define the season." wrappingWidth="250.0" VBox.vgrow="NEVER" />
-                                          <Label text="Event Location :">
-                                             <font>
-                                                <Font name="System Bold" size="12.0" />
-                                             </font>
-                                             <VBox.margin>
-                                                <Insets top="20.0" />
-                                             </VBox.margin>
-                                          </Label>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Spotify Camp nou Stadium - Barcelona" />
-                                          <Label text="Date :">
-                                             <padding>
-                                                <Insets top="20.0" />
-                                             </padding>
-                                             <font>
-                                                <Font name="System Bold" size="12.0" />
-                                             </font>
-                                          </Label>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="3 April 2026" />
-                                       </children>
-                                    </VBox>
-                                    <Region minWidth="10.0" prefHeight="200.0" prefWidth="10.0" HBox.hgrow="ALWAYS" />
-                                    <Button fx:id="event3Btn" minWidth="50.0" mnemonicParsing="false" prefWidth="90.0" text="Book Ticket">
-                                       <HBox.margin>
-                                          <Insets right="30.0" top="90.0" />
-                                       </HBox.margin>
-                                    </Button>
-                                 </children>
-                              </HBox>
-                           </content>
-                        </TitledPane>
-                    </panes>
-                  </Accordion>
+                              </VBox>
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </ScrollPane>
                </children>
             </AnchorPane>
          </center>
