@@ -13,6 +13,8 @@ import view_utils.Alerts;
 import view_utils.SwitchScenes;
 import models.CurrentUser;
 
+import models.CurrentUser;
+
 
 public class Login {
 
@@ -32,7 +34,7 @@ public class Login {
         String adminPath = "/views/admin/admin.fxml";
         String pmPath = "/views/PM/Pm_home.fxml";
         String spPath = "/views/SP/ServiceProvider.fxml";
-        String customerPath = "/views/customer/customer_home.fxml";
+        String custPath = "/views/customer/customer_home.fxml";
         Stage stage = (Stage) usernameField.getScene().getWindow();
 
         try {
@@ -60,7 +62,7 @@ public class Login {
             }
             else if (user.getRole().equals("customer")){
                 try{
-                    new SwitchScenes().changeScene(customerPath, stage);
+                    new SwitchScenes().changeScene(custPath, stage);
                 } catch(IOException e){
                     System.out.println(e.getMessage());
                 }

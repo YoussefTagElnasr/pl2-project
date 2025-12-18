@@ -6,11 +6,11 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.customer.customer_message">
    <children>
       <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -24,9 +24,9 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <TextField promptText="Name">
+                  <TextField fx:id="nameField" promptText="Name">
                      <HBox.margin>
-                        <Insets bottom="10.0" left="50.0" right="10.0" top="15.0" />
+                        <Insets bottom="10.0" left="50.0" right="10.0" top="23.0" />
                      </HBox.margin>
                   </TextField>
                </children>
@@ -41,27 +41,34 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <TextField promptText="user@gmail.com">
+                  <TextField fx:id="emailField" promptText="user@gmail.com">
                      <HBox.margin>
-                        <Insets bottom="10.0" left="50.0" right="10.0" top="15.0" />
+                        <Insets bottom="10.0" left="55.0" right="10.0" top="20.0" />
                      </HBox.margin>
                   </TextField>
                </children>
             </HBox>
             <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <Label prefHeight="86.0" prefWidth="223.0" text="Message" textAlignment="CENTER">
-                     <VBox.margin>
-                        <Insets />
-                     </VBox.margin>
-                     <padding>
-                        <Insets bottom="20.0" left="50.0" top="20.0" />
-                     </padding>
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </Label>
-                  <TextField alignment="TOP_LEFT" promptText="   Enter your message here">
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label prefHeight="86.0" prefWidth="223.0" text="Message :" textAlignment="CENTER">
+                           <padding>
+                              <Insets bottom="20.0" left="50.0" top="20.0" />
+                           </padding>
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+                        <Button fx:id="oldMsgBtn" minWidth="105.0" mnemonicParsing="false" onAction="#onOldMsgsClicked" prefWidth="105.0" text="Older messages">
+                           <HBox.margin>
+                              <Insets right="100.0" top="22.0" />
+                           </HBox.margin>
+                        </Button>
+                     </children>
+                  </HBox>
+                  <TextField fx:id="msgField" alignment="TOP_LEFT" promptText="   Enter your message here">
                      <VBox.margin>
                         <Insets left="100.0" right="100.0" />
                      </VBox.margin>
@@ -71,7 +78,7 @@
                   </TextField>
                </children>
             </VBox>
-            <Button mnemonicParsing="false" text="Submit Message" textFill="#0055ff">
+            <Button fx:id="submitBtn" mnemonicParsing="false" onAction="#onSubmitClicked" text="Submit Message" textFill="#0055ff">
                <VBox.margin>
                   <Insets bottom="20.0" left="230.0" top="20.0" />
                </VBox.margin>
