@@ -71,7 +71,11 @@ public class customer_dashboard {
                 if (empty) {
                     setGraphic(null);
                 }
-                else  {
+                Request ticket = getTableView().getItems().get(getIndex());
+                if (ticket.getStatus().equals("Booked"))  {
+                    setGraphic(null);
+                }
+                else {
                     setGraphic(cancelButton);
                 }
 

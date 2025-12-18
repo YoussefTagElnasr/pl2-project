@@ -164,7 +164,7 @@ public class Pm_home {
                 FinalizeButton.setOnAction(event -> {
                     Request finalizedRequest = getTableView().getItems().get(getIndex());
 
-                    controllers.PM_RequestsController.processRequest(finalizedRequest, "sent");
+                    controllers.PM_RequestsController.processRequest(finalizedRequest, "Booked");
 
                     reloadTable();
                 });

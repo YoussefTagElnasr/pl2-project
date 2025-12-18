@@ -1,3 +1,5 @@
 customer|customer_email|details|status|price|readyDate
 Emily Johnson|emj@outlook.com|Website redesign proposal|sent|300|10/01/2026
 Mohamed|email|Atlantic Ocean Concert|sent|200|27/12/2025
+Ali Ahmed|ali@gmail.com|Eminem Concert|rejected|200|11/12/2025
+Ali Ahmed|ali@gmail.com|El Clasico Match|Booked|200|11/12/2025
