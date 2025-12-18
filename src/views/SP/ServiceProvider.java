@@ -3,14 +3,18 @@ package views.SP;
 import javafx.fxml.FXML;
 import models.Request;
 import view_utils.Alerts;
+import view_utils.SwitchScenes;
 
 import java.util.List;
+import java.io.IOException;
 import java.time.LocalDate;
 import controllers.ServiceProviderController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
+
 import java.time.format.DateTimeFormatter;
 
 
@@ -18,6 +22,9 @@ public class ServiceProvider {
 
     @FXML
     private Button btnSubmit;
+
+    @FXML
+    private Button signOutButton;
 
     @FXML 
     private TextField txtPrice;
@@ -59,6 +66,7 @@ public class ServiceProvider {
         tableRequests.setItems(observableRequests);
 
         btnSubmit.setOnAction(e -> SubmitPriceAndDate());
+        signOutButton.setOnAction(e -> signOutButtonClick());
     }
 
 
@@ -97,5 +105,16 @@ public class ServiceProvider {
         txtPrice.clear();
         dateReady.setValue(null);
 
+    }
+
+    
+    @FXML
+    private void signOutButtonClick(){
+        Stage stage = (Stage) signOutButton.getScene().getWindow();
+        try{
+            new SwitchScenes().changeScene("/views/login/login.fxml", stage);
+        } catch (IOException e){
+            System.out.println(e);
+        }
     }
 }
