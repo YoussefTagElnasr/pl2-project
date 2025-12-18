@@ -1,3 +1,3 @@
 customer|customer_email|details|status|price|readyDate
 Emily Johnson|emj@outlook.com|Website redesign proposal|sent|300|10/01/2026
-Mohamed|email|Atlantic Ocean Concert|pending||
+Mohamed|email|Atlantic Ocean Concert|sent|200|27/12/2025

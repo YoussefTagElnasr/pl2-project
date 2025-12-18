@@ -13,8 +13,6 @@ import view_utils.Alerts;
 import view_utils.SwitchScenes;
 import models.CurrentUser;
 
-import models.CurrentUser;
-
 
 public class Login {
 

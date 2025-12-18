@@ -1,4 +1,2 @@
-customer|customer_email|message|response
-Ali Ahmed|ali@gmail.com|fdghdfghfdh||
-Ali Ahmed|ali@gmail.com|gjfghnf||
-Ali Ahmed|ali@gmail.com|fghfghngh||
+customer|customer_email|message|response|false
+Ali Ahmed|ali@gmail.com|hallo i have a big poroblem|[2025-12-18 07:19] kys|true
