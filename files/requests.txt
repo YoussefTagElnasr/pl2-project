@@ -8,4 +8,4 @@ Linda Brown|linda@company.com|SEO optimization|sent||
 John Doe|john@domain.com|Some project|sent||
 Anna Smith|anna@domain.com|Social media management|sent||
 Mark Wilson|mark@domain.com|App UI design|sent||
-Olivia Davis|olivia@domain.com|Content writing|ready|189-|11/12/2025
+Olivia Davis|olivia@domain.com|Content writing|ready|189|11/12/2025
