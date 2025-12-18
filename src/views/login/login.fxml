@@ -17,7 +17,7 @@
     <top>
         <BorderPane prefHeight="100" style="-fx-background-color: #3B82F6;">
             <center>
-                <Label text="Welcome to Lambda" style="-fx-text-fill: white;">
+                <Label text="Welcome" style="-fx-text-fill: white;">
                     <font>
                         <Font name="Arial Bold" size="30" />
                     </font>
