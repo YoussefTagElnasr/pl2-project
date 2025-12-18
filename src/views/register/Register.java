@@ -29,7 +29,7 @@ public class Register {
     @FXML
     private PasswordField confirmPasswordField;
 
-    @FXML 
+    @FXML
     private Button registerButton;
 
     @FXML
@@ -40,16 +40,16 @@ public class Register {
         String confirmPassord = confirmPasswordField.getText();
 
         if (!password.equals(confirmPassord)){
-            Alerts.showAlert( "password does not match" ,"password does not match");
+            Alerts.showErrorAlert( "password does not match" ,"password does not match");
             return;
         }
-        
+
         try{
             Customer user = new Customer(email, password, name);
             RegisterController.handleRegister(user);
-            
+
         } catch (IllegalArgumentException e){
-            Alerts.showAlert(e.getMessage() , "error");
+            Alerts.showErrorAlert(e.getMessage() , "error");
         }
     }
 
