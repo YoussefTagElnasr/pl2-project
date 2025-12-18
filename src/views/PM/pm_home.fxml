@@ -74,37 +74,34 @@
          <top>
             <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #3B82F6;" BorderPane.alignment="CENTER">
                <children>
-                  <Label text="Welcome , ">
+                  <Label maxWidth="125.0" minWidth="125.0" prefWidth="125.0" style="-fx-text-fill: white;" text="Welcome , ">
                      <font>
-                        <Font name="System Bold" size="30.0" />
+                        <Font name="System Bold" size="24.0" />
                      </font>
                      <HBox.margin>
                         <Insets left="10.0" />
                      </HBox.margin>
                   </Label>
-                  <Label fx:id="nameLabel" text="Project Manager">
+                  <Label fx:id="nameLabel" style="-fx-text-fill: white;" text="Project Manager">
                      <font>
-                        <Font name="System Bold" size="30.0" />
+                        <Font name="System Bold" size="24.0" />
                      </font>
                      <padding>
-                        <Insets right="40.0" top="40.0" />
+                        <Insets top="32.0" />
                      </padding>
                   </Label>
                   <Region prefHeight="100.0" prefWidth="0.0" HBox.hgrow="ALWAYS" />
-                  <Button id="messagesbutton" fx:id="reloadButton" mnemonicParsing="false" onAction="#onReloadClicked" style="-fx-background-color: #000000;-fx-text-fill: #FFFFFF" text="Reload">
+                  <Button id="messagesbutton" fx:id="reloadButton" minWidth="55.0" mnemonicParsing="false" onAction="#onReloadClicked" prefWidth="55.0" style="-fx-background-color: white; -fx-text-fill: #3B82F6; -fx-font-weight: bold;" text="Reload">
                      <HBox.margin>
                         <Insets right="20.0" top="40.0" />
                      </HBox.margin>
                   </Button>
-                  <Button id="messagesbutton" fx:id="messagesButton1" mnemonicParsing="false" onAction="#onMessagesClicked" style="-fx-background-color: #000000;-fx-text-fill: #FFFFFF" text="Messages">
+                  <Button id="messagesbutton" fx:id="messagesButton1" minWidth="71.0" mnemonicParsing="false" onAction="#onMessagesClicked" prefWidth="71.0" style="-fx-background-color: white; -fx-text-fill: #3B82F6; -fx-font-weight: bold;" text="Messages">
                      <HBox.margin>
                         <Insets right="15.0" top="40.0" />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="signOutButton"
-                        mnemonicParsing="false"
-                        style="-fx-background-color: #DC2626; -fx-text-fill: #FFFFFF;"
-                        text="Sign Out">
+                  <Button fx:id="signOutButton" minWidth="66.0" mnemonicParsing="false" prefWidth="66.0" style="-fx-background-color: white; -fx-text-fill: #DC2626; -fx-font-weight: bold;" text="Sign Out">
                      <HBox.margin>
                         <Insets right="20.0" top="40.0" />
                      </HBox.margin>
