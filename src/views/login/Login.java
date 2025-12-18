@@ -31,6 +31,7 @@ public class Login {
         String password = passwordField.getText();
         String adminPath = "/views/admin/admin.fxml";
         String pmPath = "/views/PM/Pm_home.fxml";
+        String spPath = "/views/SP/ServiceProvider.fxml";
         Stage stage = (Stage) usernameField.getScene().getWindow();
 
         try {
@@ -45,6 +46,13 @@ public class Login {
             else if (user.getRole().equals("pm")){
                 try{
                     new SwitchScenes().changeScene(pmPath, stage);
+                } catch(IOException e){
+                    System.out.println(e.getMessage());
+                }
+            }
+            else if (user.getRole().equals("sp")){
+                try{
+                    new SwitchScenes().changeScene(spPath, stage);
                 } catch(IOException e){
                     System.out.println(e.getMessage());
                 }
