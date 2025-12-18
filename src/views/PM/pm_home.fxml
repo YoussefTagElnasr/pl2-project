@@ -101,6 +101,15 @@
                         <Insets right="15.0" top="40.0" />
                      </HBox.margin>
                   </Button>
+                  <Button fx:id="signOutButton"
+                        mnemonicParsing="false"
+                        style="-fx-background-color: #DC2626; -fx-text-fill: #FFFFFF;"
+                        text="Sign Out">
+                     <HBox.margin>
+                        <Insets right="20.0" top="40.0" />
+                     </HBox.margin>
+                  </Button>
+
                </children>
             </HBox>
          </top>

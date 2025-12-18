@@ -58,6 +58,8 @@ public class Pm_home {
     private TableColumn<Request,String> dateColumn2;
     @FXML
     private TableColumn<Request,Void> actionColumn2;
+    @FXML
+    private Button signOutButton;
 
     private ObservableList<Request> pendingList;
     private ObservableList<Request> readyList;
@@ -70,6 +72,7 @@ public class Pm_home {
         pendingTable.setStyle("-fx-focus-color: transparent;-fx-faint-focus-color: transparent;");
         readyTable.setStyle("-fx-focus-color: transparent;-fx-faint-focus-color: transparent;");
         nameLabel.setText(CurrentUser.getInstance().getName());
+        signOutButton.setOnAction(e -> signOutButtonClick());
 
     }
     private  void reloadTables(){
@@ -230,6 +233,16 @@ public class Pm_home {
     @FXML
     private void onReloadClicked() {
         reloadTable();
+    }
+
+    @FXML
+    private void signOutButtonClick(){
+        Stage stage = (Stage) signOutButton.getScene().getWindow();
+        try{
+            new SwitchScenes().changeScene("/views/login/login.fxml", stage);
+        } catch (IOException e){
+            System.out.println(e);
+        }
     }
 
 }
