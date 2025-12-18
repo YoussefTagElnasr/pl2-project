@@ -34,7 +34,7 @@ public class customer_message {
 
         String messageLine = name + "|"
                 + email + "|"
-                + msg + "||";
+                + msg + "||false";
 
         try (BufferedWriter bw = new BufferedWriter(new FileWriter("files/messages.txt", true))) {
             bw.newLine();

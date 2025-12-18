@@ -21,15 +21,15 @@
                <children>
                   <HBox prefHeight="100.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <Label prefHeight="40.0" prefWidth="119.0" text="Welcome,">
+                        <Label minWidth="117.0" prefWidth="125.0" text="Welcome," textFill="WHITE">
                            <HBox.margin>
-                              <Insets left="15.0" top="5.0" />
+                              <Insets left="10.0" top="5.0" />
                            </HBox.margin>
                            <font>
                               <Font name="System Bold" size="25.0" />
                            </font>
                         </Label>
-                        <Label fx:id="custName" prefHeight="40.0" prefWidth="218.0" text="Youssef Mohamed">
+                        <Label fx:id="custName" minWidth="208.0" prefHeight="40.0" prefWidth="230.0" text="Youssef Mohamed" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="25.0" />
                            </font>
@@ -38,17 +38,17 @@
                            </HBox.margin>
                         </Label>
                         <Region minWidth="1.0" prefHeight="200.0" prefWidth="1.0" HBox.hgrow="ALWAYS" />
-                        <Button fx:id="dashBtn" minWidth="75.0" mnemonicParsing="false" onAction="#onDashClicked" prefHeight="26.0" prefWidth="80.0" text="Dashboard">
+                        <Button fx:id="dashBtn" minWidth="80.0" mnemonicParsing="false" onAction="#onDashClicked" prefWidth="80.0" style="-fx-background-color: white; -fx-text-fill: #3B82F6; -fx-font-weight: bold;" text="Dashboard">
                            <HBox.margin>
                               <Insets right="10.0" top="20.0" />
                            </HBox.margin>
                         </Button>
-                        <Button fx:id="contactBtn" minWidth="75.0" mnemonicParsing="false" onAction="#onContactClicked" text="Contact Us">
+                        <Button fx:id="contactBtn" minWidth="20.0" mnemonicParsing="false" onAction="#onContactClicked" prefWidth="80.0" style="-fx-background-color: white; -fx-text-fill: #3B82F6; -fx-font-weight: bold;" text="Contact">
                            <HBox.margin>
                               <Insets right="10.0" top="20.0" />
                            </HBox.margin>
                         </Button>
-                        <Button fx:id="soutBtn" layoutX="135.0" layoutY="10.0" minWidth="62.0" mnemonicParsing="false" onAction="#onSignOutClicked" text="Sign Out">
+                        <Button fx:id="soutBtn" layoutX="135.0" layoutY="10.0" minWidth="70.0" mnemonicParsing="false" onAction="#onSignOutClicked" prefWidth="70.0" style="-fx-background-color: white; -fx-text-fill: #3B82F6; -fx-font-weight: bold;" text="Sign Out">
                            <HBox.margin>
                               <Insets right="10.0" top="20.0" />
                            </HBox.margin>
