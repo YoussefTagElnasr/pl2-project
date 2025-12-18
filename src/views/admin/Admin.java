@@ -7,13 +7,16 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 import javafx.util.Callback;
 import models.AdminRequest;
 import models.CurrentUser;
 import models.Customer;
 import models.User;
 import view_utils.Alerts;
+import view_utils.SwitchScenes;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Admin {
@@ -55,6 +58,9 @@ public class Admin {
     private Button deleteButton;
     @FXML 
     private Button addButton;
+    @FXML
+    private Button signOutButton;
+
 
     @FXML
     public void initialize() {
@@ -89,6 +95,8 @@ public class Admin {
 
         deleteButton.setOnAction(e -> deleteSelectedUser());
         addButton.setOnAction(e -> addClickButton());
+
+        signOutButton.setOnAction(e -> signOutButtonClick());
     }
 
     @FXML
@@ -129,6 +137,16 @@ public class Admin {
             myChoiceBox.setValue("customer");
         } catch (IllegalArgumentException e) {
             Alerts.showErrorAlert(e.getMessage(), "Error");
+        }
+    }
+
+    @FXML
+    private void signOutButtonClick() {
+        Stage stage = (Stage) signOutButton.getScene().getWindow();
+        try{
+            new SwitchScenes().changeScene("/views/login/login.fxml", stage);
+        } catch (IOException e){
+            System.out.println(e);
         }
     }
 }
