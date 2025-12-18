@@ -1,11 +1,2 @@
 customer|customer_email|details|status|price|readyDate
-Emily Johnson|emj@outlook.com|Website redesign proposal|ready|200|27/12/2025
-Mohamed Abdol|mabd@world.com|Mobile app development|sent||
-Jackson Lee|jackson@em.com|Logo design|sent||
-Sara Ahmed|sara@gmail.com|Marketing campaign|sent||
-Ali Hassan|ali@yahoo.com|E-commerce website|ready|2|04/12/2025
-Linda Brown|linda@company.com|SEO optimization|sent||
-John Doe|john@domain.com|Some project|sent||
-Anna Smith|anna@domain.com|Social media management|sent||
-Mark Wilson|mark@domain.com|App UI design|sent||
-Olivia Davis|olivia@domain.com|Content writing|ready|189|11/12/2025
+Emily Johnson|emj@outlook.com|Website redesign proposal|sent|300|10/01/2026
