@@ -4,3 +4,5 @@ out/
 *.class
 .idea/
 pl2-projectproject.iml
+.idea
+.iml
