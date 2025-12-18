@@ -76,6 +76,11 @@ public class ServiceProvider {
         LocalDate date = dateReady.getValue();
         String email = selected.getEmail();
 
+        if(Integer.parseInt(price) < 0){
+            Alerts.showErrorAlert("price cannot be negative", "Error");
+            return;
+        }
+
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         String dateStr = date.format(formatter);
 
